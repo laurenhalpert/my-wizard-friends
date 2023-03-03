@@ -15,5 +15,9 @@ function renderWizard(wizard) {
     const wizardPicture = document.createElement("img");
     wizardPicture.src= wizard.image;
     wizardPicture.className="wizard-thumbnail";
+    wizardPicture.addEventListener("click", () => showWizardProfile(wizard));
     document.querySelector("#wizard-pics-here").appendChild(wizardPicture);
+}
+function showWizardProfile(wizard) {
+    console.log(wizard);
 }
