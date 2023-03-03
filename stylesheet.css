@@ -8,11 +8,12 @@ header {
     text-align: center;
 }
 
-div#wizard-form h2{
+div#wizard-form {
+    background:#dfbf9f;
+    padding: 10px;
     text-align: center;
-    font-family: "Luminari";
 }
 
-div#wizard-form h4{
-    text-align: center;
+div#wizard-form h2{
+    font-family: "Luminari";
 }
