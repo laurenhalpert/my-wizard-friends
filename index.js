@@ -26,9 +26,17 @@ function showWizardProfile(wizard) {
     <h2>${wizard.name}</h2>
     <p>${wizard.gender}</p>
     <p>House: ${wizard.house}<p>
-    <p>Patronus: ${wizard.patronus}</p>
+    <p>Patronus: ${hasPatronus(wizard)}</p>
     <button>Add As Friend</button>
     <button>Edit</button>
     <button>Delete</button>
     `
+}
+
+function hasPatronus(wizard) {
+    if(wizard.patronus !== "") {
+        return wizard.patronus;
+    } else {
+        return "unknown";
+    }
 }
