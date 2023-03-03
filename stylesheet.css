@@ -1,20 +1,23 @@
 body {
     background: #ffffe6;
     font-family: "Courier";
+    text-align: center;
 }
 
 header {
     font-family: "Luminari";
-    text-align: center;
 }
 
 div#wizard-form {
     background:#dfbf9f;
     padding: 10px;
-    text-align: center;
 }
 
 div#wizard-form h2{
     font-family: "Luminari";
 }
 
+div#wizard-profile{
+    border: solid;
+    border-color: black;
+}
