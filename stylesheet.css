@@ -4,7 +4,7 @@ body {
     text-align: center;
 }
 
-header {
+header, h2{
     font-family: "Luminari";
 }
 
@@ -13,9 +13,7 @@ div#wizard-form {
     padding: 10px;
 }
 
-h2{
-    font-family: "Luminari";
-}
+
 
 div#wizard-profile{
     border: solid;
