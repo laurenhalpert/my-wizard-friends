@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         .then(wizard => {
             for (let i =0; i<10; i++) {
                 renderWizard(wizard[i]);
+                showWizardProfile(wizard[0])
             }
         })
     }
