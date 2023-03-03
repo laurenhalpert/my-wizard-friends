@@ -19,3 +19,8 @@ div#wizard-profile{
     margin: 20px;
     padding: 10px;
 }
+
+img.wizard-thumbnail {
+    height: 150px;
+    padding: 10px;
+}

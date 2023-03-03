@@ -14,5 +14,6 @@ document.addEventListener("DOMContentLoaded", () =>{
 function renderWizard(wizard) {
     const wizardPicture = document.createElement("img");
     wizardPicture.src= wizard.image;
-    document.querySelector("#wizards").appendChild(wizardPicture);
+    wizardPicture.className="wizard-thumbnail";
+    document.querySelector("#wizard-pics-here").appendChild(wizardPicture);
 }
