@@ -17,3 +17,7 @@ div#wizard-form {
 div#wizard-form h2{
     font-family: "Luminari";
 }
+
+div#wizards {
+    background: #4d3319;
+}
