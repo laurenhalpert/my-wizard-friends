@@ -1,0 +1,18 @@
+document.addEventListener("DOMContentLoaded", () =>{
+    function getWizards() {
+        fetch("https://hp-api.onrender.com/api/characters")
+        .then(resp => resp.json())
+        .then(wizard => {
+            for (let i =0; i<10; i++) {
+                renderWizard(wizard[i]);
+            }
+        })
+    }
+    getWizards();
+})
+
+function renderWizard(wizard) {
+    const wizardPicture = document.createElement("img");
+    wizardPicture.src= wizard.image;
+    document.querySelector("#wizards").appendChild(wizardPicture);
+}
