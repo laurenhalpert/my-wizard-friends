@@ -19,5 +19,21 @@ function renderWizard(wizard) {
     document.querySelector("#wizard-pics-here").appendChild(wizardPicture);
 }
 function showWizardProfile(wizard) {
-    console.log(wizard);
+    const profilePicture = document.querySelector("#placeholder");
+    const name = document.createElement("h2");
+    const gender = document.createElement("p");
+    const house = document.createElement("p");
+    const patronus = document.createElement("p");
+    
+    profilePicture.src = wizard.image;
+    name.innerText = wizard.name;
+    gender.innerText= wizard.gender;
+    house.innerText = `House: ${wizard.house}`;
+    patronus.innerText = `Patronus: ${wizard.patronus}`;
+    
+    const profile = document.querySelector("#wizard-profile")
+    profile.appendChild(name);
+    profile.appendChild(gender);
+    profile.appendChild(house);
+    profile.appendChild(patronus);
 }
