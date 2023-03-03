@@ -24,3 +24,7 @@ img.wizard-thumbnail {
     height: 150px;
     padding: 10px;
 }
+
+img.profile-picture {
+    height: 300px;
+}

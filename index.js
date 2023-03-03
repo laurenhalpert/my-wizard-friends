@@ -21,7 +21,7 @@ function renderWizard(wizard) {
 function showWizardProfile(wizard) {
     const profile = document.querySelector("#wizard-profile")
     profile.innerHTML=`
-    <img src="${wizard.image}">
+    <img src="${wizard.image}" class="profile-picture">
     <h2>${wizard.name}</h2>
     <p>${wizard.gender}</p>
     <p>House: ${wizard.house}<p>
