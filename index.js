@@ -19,21 +19,15 @@ function renderWizard(wizard) {
     document.querySelector("#wizard-pics-here").appendChild(wizardPicture);
 }
 function showWizardProfile(wizard) {
-    const profilePicture = document.querySelector("#placeholder");
-    const name = document.createElement("h2");
-    const gender = document.createElement("p");
-    const house = document.createElement("p");
-    const patronus = document.createElement("p");
-    
-    profilePicture.src = wizard.image;
-    name.innerText = wizard.name;
-    gender.innerText= wizard.gender;
-    house.innerText = `House: ${wizard.house}`;
-    patronus.innerText = `Patronus: ${wizard.patronus}`;
-    
     const profile = document.querySelector("#wizard-profile")
-    profile.appendChild(name);
-    profile.appendChild(gender);
-    profile.appendChild(house);
-    profile.appendChild(patronus);
+    profile.innerHTML=`
+    <img src="${wizard.image}">
+    <h2>${wizard.name}</h2>
+    <p>${wizard.gender}</p>
+    <p>House: ${wizard.house}<p>
+    <p>Patronus: ${wizard.patronus}</p>
+    <button>Add As Friend</button>
+    <button>Edit</button>
+    <button>Delete</button>
+    `
 }
