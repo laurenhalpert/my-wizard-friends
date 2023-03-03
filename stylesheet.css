@@ -13,9 +13,9 @@ div#wizard-form {
     padding: 10px;
 }
 
-
-
 div#wizard-profile{
     border: solid;
     border-color: black;
+    margin: 20px;
+    padding: 10px;
 }
