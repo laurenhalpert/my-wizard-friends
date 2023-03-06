@@ -35,6 +35,7 @@ function showWizardProfile(wizard) {
             <input type="text" id="rating-input" name="rating-input" placeholder="Rating">
             <label for="comment-input">Comment: </label>
             <textarea id="comment-input" name="comment-input" placeholder="Comment"></textarea>
+            <input type="submit" id="update-btn" value="Update">
         </form>
     </div>
     <button>Add As Friend</button>
