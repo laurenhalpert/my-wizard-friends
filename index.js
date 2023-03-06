@@ -57,7 +57,7 @@ function showWizardProfile(wizard) {
     `
     profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
     profile.querySelector("#add-friend-btn").addEventListener("click", () =>addFriend(wizard));
-    profile.querySelector("#edit-form").addEventListener("submit", updateRatingComment);
+    profile.querySelector("#edit-form").addEventListener("submit", (event)=> updateRatingComment(event, wizard));
 }
 function editRatingComment(){
     document.querySelector("#container-for-edit-form").style.visibility = "visible";
@@ -79,7 +79,7 @@ function addFriend(wizard) {
 }
 
 
-function updateRatingComment(event) {
+function updateRatingComment(event, wizard) {
     event.preventDefault();
     if (event.target[0].value !== ""){
         document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
@@ -87,20 +87,26 @@ function updateRatingComment(event) {
     if(event.target[1].value !== "") {
         document.querySelector("#comments").innerText = `Comments: ${event.target[1].value}`;
     }
+    let likeObj={};
+    likeObj.id = wizard.id;
+    likeObj.forName = wizard.name;
+    likeObj.rating = event.target[0].value;
+    likeObj.comment = event.target[1].value;
+    patchRatingComment(likeObj)
 }
 
-/*function patchRatingComment(){
-    fetch(`http://localhost:3000/ratingsComments`, {
+function patchRatingComment(likeObj){
+    fetch(`http://localhost:3000/ratingsComments/${likeObj.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-        body: JSON.stringify(obj)
+        body: JSON.stringify(likeObj)
     })
-    .then(resp => resp.json());
-    .then(data => console.log(data));
-}*/
+    .then(resp => resp.json())
+    .then(data => console.log(data))
+}
 
 function hasPatronus(wizard) {
     if(wizard.patronus !== "") {
@@ -111,7 +117,7 @@ function hasPatronus(wizard) {
 }
 
 function getRatingsComments(wizard){
-    fetch("http://localhost:3000/ratingsComments")
+    fetch("http://localhost:3000/ratingsComments/")
     .then(resp => resp.json())
     .then(data=>data.forEach(elem=> showRatingComment(elem, wizard)))
 }
