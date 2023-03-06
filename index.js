@@ -57,10 +57,7 @@ function showWizardProfile(wizard) {
     `
     profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
     profile.querySelector("#add-friend-btn").addEventListener("click", () =>addFriend(wizard));
-    /*profile.querySelector("#update-btn").addEventListener("submit", event => {
-        event.preventDefault();
-        updateRatingComment(event);
-    });*/
+    profile.querySelector("#edit-form").addEventListener("submit", updateRatingComment);
 }
 function editRatingComment(){
     document.querySelector("#container-for-edit-form").style.visibility = "visible";
@@ -82,10 +79,11 @@ function addFriend(wizard) {
 }
 
 
-/*function updateRatingComment(event) {
+function updateRatingComment(event) {
     event.preventDefault();
-    console.log(event);
-}*/
+    document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
+    document.querySelector("#comments").innerText = `Comments: ${event.target[1].value}`;
+}
 
 /*function patchRatingComment(){
     fetch(`http://localhost:3000/ratingsComments`, {
