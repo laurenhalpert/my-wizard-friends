@@ -30,9 +30,14 @@ function showWizardProfile(wizard) {
     <p id="rating"> Rating: ${getRatingsComments(wizard)}</p>
     <p id="comments"> Comments: ${getRatingsComments(wizard)}</p>
     <button>Add As Friend</button>
-    <button>Edit</button>
+    <button id="edit-btn">Edit</button>
     <button>Delete</button>
     `
+    profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
+}
+
+function editRatingComment(){
+    console.log("hello world");
 }
 
 function hasPatronus(wizard) {
