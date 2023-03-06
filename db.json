@@ -11,6 +11,18 @@
       "forName": "Hermione Granger",
       "rating": "5",
       "comment": "the best"
+    },
+    {
+      "id": "3db6dc51-b461-4fa4-a6e4-b1ff352221c5",
+      "forName": "Neville Longbottom",
+      "comment": "has a toad",
+      "rating": "3"
+    },
+    {
+      "id": "af95bd8a-dfae-45bb-bc69-533860d34129",
+      "forName": "Draco Malfoy",
+      "rating": "2",
+      "comment": "isn't completely evil"
     }
   ]
 }

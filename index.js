@@ -84,18 +84,7 @@ function updateRatingComment(event, wizard) {
     let likeObj={};
     likeObj.id = wizard.id;
     likeObj.forName = wizard.name;
-    if (document.querySelector("#rating").innerText.substring(8) !== "undefined"){
-        if (event.target[0].value !== ""){
-            document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
-            likeObj.rating = event.target[0].value;
-        }
-        if(event.target[1].value !== "") {
-            document.querySelector("#comments").innerText = `Comments: ${event.target[1].value}`;
-            likeObj.comment = event.target[1].value;
-            
-        }
-        patchRatingComment(likeObj)
-    }   else {
+    if (document.querySelector("#rating").innerText.substring(8) === "undefined" && document.querySelector("#comments").innerText.substring(11) === "undefined"){
         if (event.target[0].value !== ""){
             document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
             likeObj.rating = event.target[0].value;
@@ -107,6 +96,18 @@ function updateRatingComment(event, wizard) {
         }
         postRatingComment(likeObj);
     }
+    else {
+        if (event.target[0].value !== ""){
+            document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
+            likeObj.rating = event.target[0].value;
+        }
+        if(event.target[1].value !== "") {
+            document.querySelector("#comments").innerText = `Comments: ${event.target[1].value}`;
+            likeObj.comment = event.target[1].value;
+            
+        }
+        patchRatingComment(likeObj)
+    } 
     
 }
 
