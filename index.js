@@ -84,7 +84,9 @@ function updateRatingComment(event, wizard) {
     let likeObj={};
     likeObj.id = wizard.id;
     likeObj.forName = wizard.name;
-    if (document.querySelector("#rating").innerText.substring(8) === "undefined" && document.querySelector("#comments").innerText.substring(11) === "undefined"){
+    console.log(document.querySelector("#rating").innerText.substring(8));
+    console.log(document.querySelector("#comments").innerText.substring(10));
+    if (document.querySelector("#rating").innerText.substring(8) === "undefined" && document.querySelector("#comments").innerText.substring(10) === "undefined"){
         if (event.target[0].value !== ""){
             document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
             likeObj.rating = event.target[0].value;
@@ -94,6 +96,7 @@ function updateRatingComment(event, wizard) {
             likeObj.comment = event.target[1].value;
             
         }
+
         postRatingComment(likeObj);
     }
     else {

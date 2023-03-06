@@ -3,7 +3,7 @@
     {
       "id": "9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8",
       "forName": "Harry Potter",
-      "rating": "4",
+      "rating": "5",
       "comment": "the chosen one"
     },
     {
@@ -23,6 +23,12 @@
       "forName": "Draco Malfoy",
       "rating": "2",
       "comment": "isn't completely evil"
+    },
+    {
+      "id": "c3b1f9a5-b87b-48bf-b00d-95b093ea6390",
+      "forName": "Ron Weasley",
+      "rating": "4",
+      "comment": "he's an okay friend"
     }
   ]
 }
