@@ -29,13 +29,20 @@ function showWizardProfile(wizard) {
     <p>Patronus: ${hasPatronus(wizard)}</p>
     <p id="rating"> Rating: ${getRatingsComments(wizard)}</p>
     <p id="comments"> Comments: ${getRatingsComments(wizard)}</p>
+    <div id="container-for-edit-form">
+        <form id="edit-form">
+            <label for="rating-input">Rating: </label>
+            <input type="text" id="rating-input" name="rating-input" placeholder="Rating">
+            <label for="comment-input">Comment: </label>
+            <textarea id="comment-input" name="comment-input" placeholder="Comment"></textarea>
+        </form>
+    </div>
     <button>Add As Friend</button>
     <button id="edit-btn">Edit</button>
     <button>Delete</button>
     `
     profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
 }
-
 function editRatingComment(){
     document.querySelector("#container-for-edit-form").style.visibility = "visible";
 }
