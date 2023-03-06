@@ -43,7 +43,7 @@ function showWizardProfile(wizard) {
     <button id="del-btn">Delete</button>
     `
     profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
-    profile.querySelector("add-friend-btn").addEventListener("click", addFriend);
+    profile.querySelector("#add-friend-btn").addEventListener("click", addFriend);
     /*profile.querySelector("#update-btn").addEventListener("submit", event => {
         event.preventDefault();
         updateRatingComment(event);
@@ -51,6 +51,10 @@ function showWizardProfile(wizard) {
 }
 function editRatingComment(){
     document.querySelector("#container-for-edit-form").style.visibility = "visible";
+}
+
+function addFriend() {
+    console.log("hi");
 }
 
 /*function updateRatingComment(event) {
