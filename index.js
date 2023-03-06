@@ -27,6 +27,8 @@ function showWizardProfile(wizard) {
     <p>${wizard.gender}</p>
     <p>House: ${wizard.house}<p>
     <p>Patronus: ${hasPatronus(wizard)}</p>
+    <p> Rating: </p>
+    <p> Comments: </p>
     <button>Add As Friend</button>
     <button>Edit</button>
     <button>Delete</button>
