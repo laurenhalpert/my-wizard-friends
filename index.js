@@ -27,8 +27,8 @@ function showWizardProfile(wizard) {
     <p>${wizard.gender}</p>
     <p>House: ${wizard.house}<p>
     <p>Patronus: ${hasPatronus(wizard)}</p>
-    <p id="rating"> Rating: ${getRatingsComments()}</p>
-    <p id="comments"> Comments: ${getRatingsComments()}</p>
+    <p id="rating"> Rating: ${getRatingsComments(wizard)}</p>
+    <p id="comments"> Comments: ${getRatingsComments(wizard)}</p>
     <button>Add As Friend</button>
     <button>Edit</button>
     <button>Delete</button>
@@ -43,16 +43,19 @@ function hasPatronus(wizard) {
     }
 }
 
-function getRatingsComments(){
+function getRatingsComments(wizard){
     fetch("http://localhost:3000/ratingsComments")
     .then(resp => resp.json())
-    .then(data=>data.forEach(elem=> showRatingComment(elem)))
+    .then(data=>data.forEach(elem=> showRatingComment(elem, wizard)))
 }
 
-function showRatingComment(data) {
-    console.log(data);
-    console.log(document.querySelector("#rating"));
-    console.log(document.querySelector("#comments"));
-    document.querySelector("#rating").innerText = `Rating: ${data.rating}`;
-    document.querySelector("#comments").innerText = `Comments: ${data.comment}`;
+function showRatingComment(data, wizard) {
+    if (wizard.name === data.forName) {
+        document.querySelector("#rating").innerText = `Rating: ${data.rating}`;
+        document.querySelector("#comments").innerText = `Comments: ${data.comment}`;
+    } else {
+        document.querySelector("#rating").innerText = `Rating: tbd`;
+        document.querySelector("#comments").innerText = `Comments: tbd`;
+    }
+    
 }
