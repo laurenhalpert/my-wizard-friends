@@ -1,8 +1,10 @@
-[
-    {
-        "id": 0,
-        "for": 9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8,
-        "rating":0,
-        "comment": "hello world."
-    }
-]
+{
+    "ratingsComments":
+    [
+        {
+            "id": 0,
+            "rating":0,
+            "comment": "hello world."
+        }
+    ]
+}
