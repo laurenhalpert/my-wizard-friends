@@ -5,12 +5,19 @@ document.addEventListener("DOMContentLoaded", () =>{
         .then(wizard => {
             for (let i =0; i<10; i++) {
                 renderWizard(wizard[i]);
-                showWizardProfile(wizard[0])
+                showWizardProfile(wizard[0]);
+                
             }
         })
     }
     getWizards();
 })
+
+document.querySelector("#create-wizard").addEventListener("submit", handleSubmit);
+function handleSubmit(event) {
+    event.preventDefault();
+    console.log(event);
+}
 
 function renderWizard(wizard) {
     const wizardPicture = document.createElement("img");
@@ -59,9 +66,15 @@ function addFriend(wizard) {
     myFriendPic.src= wizard.image;
     myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
-    
-
+    /*fetch("https://hp-api.onrender.com/api/characters")
+    .then(resp=>resp.json())
+    .then(data => data.forEach(elem=>{
+        if (elem.image===myFriendPic.src) {
+            renderFriend(elem);
+        }
+    }))*/
 }
+
 
 /*function updateRatingComment(event) {
     event.preventDefault();
