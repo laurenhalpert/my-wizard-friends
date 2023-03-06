@@ -40,8 +40,8 @@ function showWizardProfile(wizard) {
     <p>${wizard.gender}</p>
     <p>House: ${wizard.house}<p>
     <p>Patronus: ${hasPatronus(wizard)}</p>
-    <p id="rating"> Rating: ${getRatingsComments(wizard)}</p>
-    <p id="comments"> Comments: ${getRatingsComments(wizard)}</p>
+    <p id="rating"> Rating: <span id="num-ratings">${getRatingsComments(wizard)}</span></p>
+    <p id="comments"> Comments: <span id="actual-comment">${getRatingsComments(wizard)}</span></p>
     <div id="container-for-edit-form">
         <form id="edit-form">
             <label for="rating-input">Rating: </label>
@@ -81,18 +81,23 @@ function addFriend(wizard) {
 
 function updateRatingComment(event, wizard) {
     event.preventDefault();
-    if (event.target[0].value !== ""){
-        document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
-    }
-    if(event.target[1].value !== "") {
-        document.querySelector("#comments").innerText = `Comments: ${event.target[1].value}`;
-    }
     let likeObj={};
     likeObj.id = wizard.id;
     likeObj.forName = wizard.name;
-    likeObj.rating = event.target[0].value;
-    likeObj.comment = event.target[1].value;
+    console.log(document.querySelector("#num-ratings"));
+    
+    if (event.target[0].value !== ""){
+        document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
+        likeObj.rating = event.target[0].value;
+    }
+    if(event.target[1].value !== "") {
+        document.querySelector("#comments").innerText = `Comments: ${event.target[1].value}`;
+        likeObj.comment = event.target[1].value;
+        
+    }
     patchRatingComment(likeObj)
+   
+    
 }
 
 function patchRatingComment(likeObj){
