@@ -6,6 +6,12 @@
             "forName": "Harry Potter",
             "rating":0,
             "comment": "hello world."
+        },
+        {
+            "id": 1,
+            "forName": "Hermione Granger",
+            "rating": 5,
+            "comment": "the best"
         }
     ]
 }

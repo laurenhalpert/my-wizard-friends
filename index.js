@@ -38,15 +38,38 @@ function showWizardProfile(wizard) {
             <input type="submit" id="update-btn" value="Update">
         </form>
     </div>
-    <button>Add As Friend</button>
+    <button id="add-friend-btn">Add As Friend</button>
     <button id="edit-btn">Edit</button>
-    <button>Delete</button>
+    <button id="del-btn">Delete</button>
     `
     profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
+    profile.querySelector("add-friend-btn").addEventListener("click", addFriend);
+    /*profile.querySelector("#update-btn").addEventListener("submit", event => {
+        event.preventDefault();
+        updateRatingComment(event);
+    });*/
 }
 function editRatingComment(){
     document.querySelector("#container-for-edit-form").style.visibility = "visible";
 }
+
+/*function updateRatingComment(event) {
+    event.preventDefault();
+    console.log(event);
+}*/
+
+/*function patchRatingComment(){
+    fetch(`http://localhost:3000/ratingsComments`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(obj)
+    })
+    .then(resp => resp.json());
+    .then(data => console.log(data));
+}*/
 
 function hasPatronus(wizard) {
     if(wizard.patronus !== "") {
@@ -66,9 +89,5 @@ function showRatingComment(data, wizard) {
     if (wizard.name === data.forName) {
         document.querySelector("#rating").innerText = `Rating: ${data.rating}`;
         document.querySelector("#comments").innerText = `Comments: ${data.comment}`;
-    } else {
-        document.querySelector("#rating").innerText = `Rating: tbd`;
-        document.querySelector("#comments").innerText = `Comments: tbd`;
-    }
-    
+    } 
 }
