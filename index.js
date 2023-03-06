@@ -37,7 +37,7 @@ function showWizardProfile(wizard) {
 }
 
 function editRatingComment(){
-    console.log("hello world");
+    document.querySelector("#container-for-edit-form").style.visibility = "visible";
 }
 
 function hasPatronus(wizard) {
