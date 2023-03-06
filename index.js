@@ -43,7 +43,7 @@ function showWizardProfile(wizard) {
     <button id="del-btn">Delete</button>
     `
     profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
-    profile.querySelector("#add-friend-btn").addEventListener("click", addFriend);
+    profile.querySelector("#add-friend-btn").addEventListener("click", () =>addFriend(wizard));
     /*profile.querySelector("#update-btn").addEventListener("submit", event => {
         event.preventDefault();
         updateRatingComment(event);
@@ -53,8 +53,14 @@ function editRatingComment(){
     document.querySelector("#container-for-edit-form").style.visibility = "visible";
 }
 
-function addFriend() {
-    console.log("hi");
+function addFriend(wizard) {
+    const myFriendPic = document.createElement("img");
+    myFriendPic.className = "wizard-thumbnail";
+    myFriendPic.src= wizard.image;
+    myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
+    document.querySelector("#my-friends-here").appendChild(myFriendPic);
+    
+
 }
 
 /*function updateRatingComment(event) {
