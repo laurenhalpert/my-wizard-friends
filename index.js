@@ -16,7 +16,13 @@ document.addEventListener("DOMContentLoaded", () =>{
 document.querySelector("#create-wizard").addEventListener("submit", handleSubmit);
 function handleSubmit(event) {
     event.preventDefault();
-    console.log(event);
+    let wizardObj={};
+    wizardObj.name = event.target[0].value;
+    wizardObj.gender = event.target[1].value;
+    wizardObj.house = event.target[2].value;
+    wizardObj.patronus= event.target[3].value;
+    wizardObj.image= event.target[4].value;
+    renderWizard(wizardObj);
 }
 
 function renderWizard(wizard) {
