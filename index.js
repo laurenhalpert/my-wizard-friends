@@ -166,15 +166,30 @@ function sortWizards(event) {
             
         }
         let sortedNames = nameArray.sort();
-        sortedNames.forEach(name=> {
-            for (let i=0; i< 10; i++) {
-                if(name === wizard[i].name){
-                    arrOfSortedWizards.push(wizard[i]);
+        if(event.target.value === "name-a-z"){
+            sortedNames.forEach(name=> {
+                for (let i=0; i< 10; i++) {
+                    if(name === wizard[i].name){
+                        arrOfSortedWizards.push(wizard[i]);
+                    }
                 }
-            }
-        })
-        document.querySelector("#wizard-pics-here").innerHTML = "";
-        arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
+            })
+            document.querySelector("#wizard-pics-here").innerHTML = "";
+            arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
+        }
+        let reverseAlphabetical = sortedNames.reverse();
+        if (event.target.value === "name-z-a") {
+            reverseAlphabetical.forEach(name=> {
+                for (let i=0; i< 10; i++) {
+                    if(name === wizard[i].name){
+                        arrOfSortedWizards.push(wizard[i]);
+                    }
+                }
+            })
+            document.querySelector("#wizard-pics-here").innerHTML = "";
+            arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
+        }
+        
     })
     
     /*if(event.target.value === "name-a-z") {
