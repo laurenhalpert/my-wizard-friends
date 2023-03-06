@@ -1,3 +1,4 @@
+let wizardArray = [];
 document.addEventListener("DOMContentLoaded", () =>{
     function getWizards() {
         fetch("https://hp-api.onrender.com/api/characters")
@@ -6,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () =>{
             for (let i =0; i<10; i++) {
                 renderWizard(wizard[i]);
                 showWizardProfile(wizard[0]);
-                
+                wizardArray.push(wizard[i]);
             }
         })
     }
@@ -149,4 +150,24 @@ function showRatingComment(data, wizard) {
         document.querySelector("#rating").innerText = `Rating: ${data.rating}`;
         document.querySelector("#comments").innerText = `Comments: ${data.comment}`;
     } 
+}
+
+document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event));
+function sortWizards(event) {
+    //console.log(document.querySelectorAll(".wizard-thumbnail"));
+    //console.log(wizardArray);
+    let nameArray = [];
+    if(event.target.value === "name-a-z") {
+        wizardArray.forEach(wizard=>{
+            nameArray.push(wizard.name);
+        })
+        console.log(nameArray.sort());
+    } else if (event.target.value === "name-z-a") {
+        wizardArray.forEach(wizard=>{
+            nameArray.push(wizard.name);
+        })
+        console.log(nameArray.sort().reverse());
+    }
+    
+    
 }
