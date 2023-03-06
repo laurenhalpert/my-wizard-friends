@@ -27,8 +27,8 @@ function showWizardProfile(wizard) {
     <p>${wizard.gender}</p>
     <p>House: ${wizard.house}<p>
     <p>Patronus: ${hasPatronus(wizard)}</p>
-    <p> Rating: </p>
-    <p> Comments: </p>
+    <p id="rating"> Rating: ${getRatingsComments()}</p>
+    <p id="comments"> Comments: ${getRatingsComments()}</p>
     <button>Add As Friend</button>
     <button>Edit</button>
     <button>Delete</button>
@@ -41,4 +41,18 @@ function hasPatronus(wizard) {
     } else {
         return "unknown";
     }
+}
+
+function getRatingsComments(){
+    fetch("http://localhost:3000/ratingsComments")
+    .then(resp => resp.json())
+    .then(data=>data.forEach(elem=> showRatingComment(elem)))
+}
+
+function showRatingComment(data) {
+    console.log(data);
+    console.log(document.querySelector("#rating"));
+    console.log(document.querySelector("#comments"));
+    document.querySelector("#rating").innerText = `Rating: ${data.rating}`;
+    document.querySelector("#comments").innerText = `Comments: ${data.comment}`;
 }
