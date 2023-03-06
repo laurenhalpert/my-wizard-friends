@@ -81,8 +81,12 @@ function addFriend(wizard) {
 
 function updateRatingComment(event) {
     event.preventDefault();
-    document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
-    document.querySelector("#comments").innerText = `Comments: ${event.target[1].value}`;
+    if (event.target[0].value !== ""){
+        document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
+    }
+    if(event.target[1].value !== "") {
+        document.querySelector("#comments").innerText = `Comments: ${event.target[1].value}`;
+    }
 }
 
 /*function patchRatingComment(){
