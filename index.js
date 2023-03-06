@@ -69,13 +69,6 @@ function addFriend(wizard) {
     myFriendPic.src= wizard.image;
     myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
-    /*fetch("https://hp-api.onrender.com/api/characters")
-    .then(resp=>resp.json())
-    .then(data => data.forEach(elem=>{
-        if (elem.image===myFriendPic.src) {
-            renderFriend(elem);
-        }
-    }))*/
 }
 
 
@@ -84,8 +77,6 @@ function updateRatingComment(event, wizard) {
     let likeObj={};
     likeObj.id = wizard.id;
     likeObj.forName = wizard.name;
-    console.log(document.querySelector("#rating").innerText.substring(8));
-    console.log(document.querySelector("#comments").innerText.substring(10));
     if (document.querySelector("#rating").innerText.substring(8) === "undefined" && document.querySelector("#comments").innerText.substring(10) === "undefined"){
         if (event.target[0].value !== ""){
             document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
