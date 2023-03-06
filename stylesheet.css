@@ -28,3 +28,7 @@ img.wizard-thumbnail {
 img.profile-picture {
     height: 300px;
 }
+
+div#container-for-edit-form {
+    visibility: hidden;
+}
