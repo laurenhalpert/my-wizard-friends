@@ -154,8 +154,6 @@ function showRatingComment(data, wizard) {
 
 document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event));
 function sortWizards(event) {
-    //console.log(document.querySelectorAll(".wizard-thumbnail"));
-    //console.log(wizardArray);
     let nameArray = [];
     let arrOfSortedWizards =[];
     fetch("https://hp-api.onrender.com/api/characters")
@@ -191,18 +189,8 @@ function sortWizards(event) {
         }
         
     })
-    
-    /*if(event.target.value === "name-a-z") {
-        wizardArray.forEach(wizard=>{
-            nameArray.push(wizard.name);
-        })
-        console.log(nameArray.sort());
-    } else if (event.target.value === "name-z-a") {
-        wizardArray.forEach(wizard=>{
-            nameArray.push(wizard.name);
-        })
-        console.log(nameArray.sort().reverse());
-    }*/
-    
-    
+}
+document.querySelector("#filter").addEventListener("change", event =>filterBy(event))
+function filterBy(event) {
+    console.log(event.target.value)
 }
