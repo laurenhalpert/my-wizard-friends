@@ -173,7 +173,18 @@ function sortWizards(event) {
         document.querySelector("#wizard-pics-here").innerHTML = "";
         arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
     }
-
+    let reverseAlphabetical = nameArray.sort().reverse();
+    if (event.target.value === "name-z-a") {
+        reverseAlphabetical.forEach(name => {
+            wizardArray.forEach(wizard => {
+                if (wizard.name === name) {
+                    arrOfSortedWizards.push(wizard);
+                }
+            })
+        })
+        document.querySelector("#wizard-pics-here").innerHTML = "";
+        arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
+    }
 }
 
 
