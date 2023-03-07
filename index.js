@@ -306,7 +306,7 @@ function filterBy(event, arr) {
         }
     });
     document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, filteredArr, renderWizard));
-    
+    document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, filteredArr, renderFriend))
 }
 
 document.querySelector("#filter-friends").addEventListener("change", event => filterBy(event, friendArray) )
