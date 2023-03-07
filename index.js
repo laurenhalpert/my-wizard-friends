@@ -192,6 +192,7 @@ function sortWizards(event) {
 }
 document.querySelector("#filter").addEventListener("change", event =>filterBy(event))
 function filterBy(event) {
+    console.log(event.target.value.toLowerCase());
     if (event.target.value === "male"){
         wizardArray.forEach(wizard=> {
             if (wizard.gender === "male") {
@@ -219,6 +220,22 @@ function filterBy(event) {
         .then(wizard => {
             for (let i=0; i<10; i++) {
                 if (wizard[i].gender === "female") {
+                    renderWizard(wizard[i]);
+                }
+            }
+        })
+    }
+    if (event.target.value === "gryffindor"){
+        wizardArray.forEach(wizard=> {
+            if (wizard.house.toLowerCase() === "gryffindor") {
+                document.querySelector("#wizard-pics-here").innerHTML = "";
+            }
+        })
+        fetch ("https://hp-api.onrender.com/api/characters")
+        .then (resp=>resp.json())
+        .then(wizard => {
+            for (let i=0; i<10; i++) {
+                if (wizard[i].house.toLowerCase() === "gryffindor") {
                     renderWizard(wizard[i]);
                 }
             }
