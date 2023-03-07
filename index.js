@@ -73,13 +73,21 @@ function editRatingComment(){
 
 function addFriend(wizard) {
     const myFriendPic = document.createElement("img");
+    const removeFriendBtn = document.createElement("button");
+
     myFriendPic.className = "wizard-thumbnail";
     myFriendPic.src= wizard.image;
     myFriendPic.addEventListener("click", () => {
         showWizardProfile(wizard);
         document.querySelector("#del-btn").style.visibility="visible";
     });
+    removeFriendBtn.id ="remove-friend-btn";
+    removeFriendBtn.innerText= "Remove Friend";
+   
+    
+   
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
+    document.querySelector("#my-friends-here").appendChild(removeFriendBtn);
     friendArray.push(wizard);
     document.querySelector("#del-btn").style.visibility="visible";
 }
