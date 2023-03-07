@@ -273,4 +273,20 @@ function filterBy(event) {
             }
         })
     }
+    if (event.target.value === "slytherin"){
+        wizardArray.forEach(wizard=> {
+            if (wizard.house.toLowerCase() === "slytherin") {
+                document.querySelector("#wizard-pics-here").innerHTML = "";
+            }
+        })
+        fetch ("https://hp-api.onrender.com/api/characters")
+        .then (resp=>resp.json())
+        .then(wizard => {
+            for (let i=0; i<10; i++) {
+                if (wizard[i].house.toLowerCase() === "slytherin") {
+                    renderWizard(wizard[i]);
+                }
+            }
+        })
+    }
 }
