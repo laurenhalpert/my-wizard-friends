@@ -71,7 +71,10 @@ function addFriend(wizard) {
     const myFriendPic = document.createElement("img");
     myFriendPic.className = "wizard-thumbnail";
     myFriendPic.src= wizard.image;
-    myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
+    myFriendPic.addEventListener("click", () => {
+        showWizardProfile(wizard);
+        document.querySelector("#del-btn").style.visibility="visible";
+    });
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
     friendArray.push(wizard);
     document.querySelector("#del-btn").style.visibility="visible";
