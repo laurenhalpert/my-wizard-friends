@@ -74,7 +74,6 @@ function editRatingComment(){
 function addFriend(wizard) {
     const myFriendPic = document.createElement("img");
     
-    const friendDiv = document.createElement("div");
     myFriendPic.id = `${wizard.id}`
     myFriendPic.className = "wizard-thumbnail";
     myFriendPic.src= wizard.image;
@@ -83,15 +82,12 @@ function addFriend(wizard) {
         document.querySelector("#del-btn").style.visibility="visible";
     });
     
-    friendDiv.id = `friend-${wizard.id}`;
-    friendDiv.className = "friend-div";
-    friendDiv.appendChild(myFriendPic);
+    
     
     
    
-    document.querySelector("#my-friends-here").appendChild(friendDiv);
+    document.querySelector("#my-friends-here").appendChild(myFriendPic);
   
-    //document.querySelector("#my-friends-here").appendChild(removeFriendBtn);
     
     friendArray.push(wizard);
     document.querySelector("#del-btn").style.visibility="visible";
@@ -103,8 +99,9 @@ function removeFriend(event, wizard) {
     
     document.querySelectorAll(".wizard-thumbnail").forEach(elem => {
         if (elem.id === wizard.id) {
-            document.querySelector(`#friend-${wizard.id}`).remove();
-            document.querySelector("#del-btn").style.visibility = "hidden";
+            elem.remove();
+            //document.querySelector(`#friend-${wizard.id}`).remove();
+            //document.querySelector("#del-btn").style.visibility = "hidden";
         }
     })
     
