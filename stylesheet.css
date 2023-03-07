@@ -32,3 +32,7 @@ img.profile-picture {
 div#container-for-edit-form {
     visibility: hidden;
 }
+
+button#del-btn {
+    visibility: hidden;
+}
