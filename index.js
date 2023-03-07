@@ -74,6 +74,7 @@ function addFriend(wizard) {
     myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
     friendArray.push(wizard);
+    document.querySelector("#del-btn").style.visibility="visible";
 }
 document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, friendArray, renderFriend))
 
