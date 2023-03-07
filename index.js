@@ -186,7 +186,6 @@ function sortWizards(event, arr, foo) {
         if (foo === renderFriend) {
             document.querySelector("#my-friends-here").innerHTML = "";
         }
-        //document.querySelector("#wizard-pics-here").innerHTML = "";
         arrOfSortedWizards.forEach(wizard => foo(wizard));
     }
     let reverseAlphabetical = nameArray.sort().reverse();
@@ -204,75 +203,112 @@ function sortWizards(event, arr, foo) {
         if (foo === renderFriend) {
             document.querySelector("#my-friends-here").innerHTML = "";
         }
-        //document.querySelector("#wizard-pics-here").innerHTML = "";
         arrOfSortedWizards.forEach(wizard => foo(wizard));
     }
     
 }
 
 
-document.querySelector("#filter").addEventListener("change", event =>filterBy(event))
-function filterBy(event) {
+document.querySelector("#filter").addEventListener("change", event =>filterBy(event, wizardArray))
+function filterBy(event, arr) {
     let filteredArr =[];
     if (event.target.value === "male") {
-        wizardArray.forEach(wizard => {
+        arr.forEach(wizard => {
             if (wizard.gender === "male") {
                 filteredArr.push(wizard);
-                document.querySelector("#wizard-pics-here").innerHTML = "";
+                if (arr === wizardArray) {
+                    document.querySelector("#wizard-pics-here").innerHTML = "";
+                }
+                if (arr === friendArray) {
+                    document.querySelector("#my-friends-here").innerHTML = "";
+                }
+                
             }
         })
 
     }
     if (event.target.value === "female") {
-        wizardArray.forEach(wizard => {
+        arr.forEach(wizard => {
             if (wizard.gender === "female") {
                 filteredArr.push(wizard);
-                document.querySelector("#wizard-pics-here").innerHTML = "";
+                if (arr === wizardArray) {
+                    document.querySelector("#wizard-pics-here").innerHTML = "";
+                }
+                if (arr === friendArray) {
+                    document.querySelector("#my-friends-here").innerHTML = "";
+                }
             }
         })
 
     }
     if (event.target.value === "gryffindor") {
-        wizardArray.forEach(wizard => {
+        arr.forEach(wizard => {
             if (wizard.house.toLowerCase() === "gryffindor") {
                 filteredArr.push(wizard);
-                document.querySelector("#wizard-pics-here").innerHTML = "";
+                if (arr === wizardArray) {
+                    document.querySelector("#wizard-pics-here").innerHTML = "";
+                }
+                if (arr === friendArray) {
+                    document.querySelector("#my-friends-here").innerHTML = "";
+                }
             }
         })
 
     }
     if (event.target.value === "hufflepuff") {
-        wizardArray.forEach(wizard => {
+        arr.forEach(wizard => {
             if (wizard.house.toLowerCase() === "hufflepuff") {
                 filteredArr.push(wizard);
-                document.querySelector("#wizard-pics-here").innerHTML = "";
+                if (arr === wizardArray) {
+                    document.querySelector("#wizard-pics-here").innerHTML = "";
+                }
+                if (arr === friendArray) {
+                    document.querySelector("#my-friends-here").innerHTML = "";
+                }
             }
         })
 
     }
     if (event.target.value === "ravenclaw") {
-        wizardArray.forEach(wizard => {
+        arr.forEach(wizard => {
             if (wizard.house.toLowerCase() === "ravenclaw") {
                 filteredArr.push(wizard);
-                document.querySelector("#wizard-pics-here").innerHTML = "";
+                if (arr === wizardArray) {
+                    document.querySelector("#wizard-pics-here").innerHTML = "";
+                }
+                if (arr === friendArray) {
+                    document.querySelector("#my-friends-here").innerHTML = "";
+                }
             }
         })
 
     }
     if (event.target.value === "slytherin") {
-        wizardArray.forEach(wizard => {
+        arr.forEach(wizard => {
             if (wizard.house.toLowerCase() === "slytherin") {
                 filteredArr.push(wizard);
-                document.querySelector("#wizard-pics-here").innerHTML = "";
+                if (arr === wizardArray) {
+                    document.querySelector("#wizard-pics-here").innerHTML = "";
+                }
+                if (arr === friendArray) {
+                    document.querySelector("#my-friends-here").innerHTML = "";
+                }
             }
         })
 
     }
     filteredArr.forEach(wizard=>{
-        renderWizard(wizard);
+        if (arr === wizardArray) {
+            renderWizard(wizard)
+        }
+        if (arr === friendArray) {
+            renderFriend(wizard);
+        }
     });
     document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, filteredArr, renderWizard));
     
 }
+
+document.querySelector("#filter-friends").addEventListener("change", event => filterBy(event, friendArray) )
 
 
