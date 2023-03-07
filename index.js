@@ -248,6 +248,7 @@ function filterBy(event) {
     filteredArr.forEach(wizard=>{
         renderWizard(wizard);
     });
+    document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, filteredArr));
     
 }
 
