@@ -1,5 +1,6 @@
 let wizardArray = [];
 let friendArray = [];
+
 document.addEventListener("DOMContentLoaded", () =>{
     function getWizards() {
         fetch("https://hp-api.onrender.com/api/characters")
@@ -49,7 +50,7 @@ function showWizardProfile(wizard) {
     <div id="container-for-edit-form">
         <form id="edit-form">
             <label for="rating-input">Rating: </label>
-            <input type="text" id="rating-input" name="rating-input" placeholder="Rating">
+            <input type="button" id="rating-input" name="rating-input" value = "&#9734">
             <label for="comment-input">Comment: </label>
             <textarea id="comment-input" name="comment-input" placeholder="Comment"></textarea>
             <input type="submit" id="update-btn" value="Update">
