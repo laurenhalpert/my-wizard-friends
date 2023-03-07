@@ -241,4 +241,20 @@ function filterBy(event) {
             }
         })
     }
+    if (event.target.value === "hufflepuff"){
+        wizardArray.forEach(wizard=> {
+            if (wizard.house.toLowerCase() === "hufflepuff") {
+                document.querySelector("#wizard-pics-here").innerHTML = "";
+            }
+        })
+        fetch ("https://hp-api.onrender.com/api/characters")
+        .then (resp=>resp.json())
+        .then(wizard => {
+            for (let i=0; i<10; i++) {
+                if (wizard[i].house.toLowerCase() === "hufflepuff") {
+                    renderWizard(wizard[i]);
+                }
+            }
+        })
+    }
 }
