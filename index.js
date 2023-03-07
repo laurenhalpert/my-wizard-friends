@@ -50,7 +50,7 @@ function showWizardProfile(wizard) {
     <div id="container-for-edit-form">
         <form id="edit-form">
             <label for="rating-input">Rating: </label>
-            <input type="button" id="rating-input" name="rating-input" value = "&#9734">
+            <input type="button" id="rating-input" name="rating-input" value = "&#9734 &#9734 &#9734 &#9734 &#9734">
             <label for="comment-input">Comment: </label>
             <textarea id="comment-input" name="comment-input" placeholder="Comment"></textarea>
             <input type="submit" id="update-btn" value="Update">
