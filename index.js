@@ -62,7 +62,7 @@ function showWizardProfile(wizard) {
     profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
     profile.querySelector("#add-friend-btn").addEventListener("click", () =>addFriend(wizard));
     profile.querySelector("#edit-form").addEventListener("submit", (event)=> updateRatingComment(event, wizard));
-    
+    profile.querySelector("#del-btn").addEventListener("click", (event) =>removeFriend(event,wizard))
 }
 
 
@@ -73,7 +73,7 @@ function editRatingComment(){
 
 function addFriend(wizard) {
     const myFriendPic = document.createElement("img");
-    const removeFriendBtn = document.createElement("button");
+    
     const friendDiv = document.createElement("div");
     myFriendPic.id = `${wizard.id}`
     myFriendPic.className = "wizard-thumbnail";
@@ -82,13 +82,11 @@ function addFriend(wizard) {
         showWizardProfile(wizard);
         document.querySelector("#del-btn").style.visibility="visible";
     });
-    removeFriendBtn.id =`remove-friend-btn-${wizard.id}`;
-    removeFriendBtn.innerText= "Remove Friend";
-    removeFriendBtn.addEventListener("click", (event) => removeFriend(event, wizard));
+    
     friendDiv.id = `friend-${wizard.id}`;
     friendDiv.className = "friend-div";
     friendDiv.appendChild(myFriendPic);
-    friendDiv.appendChild(removeFriendBtn);
+    
     
    
     document.querySelector("#my-friends-here").appendChild(friendDiv);
@@ -106,6 +104,7 @@ function removeFriend(event, wizard) {
     document.querySelectorAll(".wizard-thumbnail").forEach(elem => {
         if (elem.id === wizard.id) {
             document.querySelector(`#friend-${wizard.id}`).remove();
+            document.querySelector("#del-btn").style.visibility = "hidden";
         }
     })
     
