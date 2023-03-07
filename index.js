@@ -23,6 +23,7 @@ function handleSubmit(event) {
     wizardObj.house = event.target[2].value;
     wizardObj.patronus= event.target[3].value;
     wizardObj.image= event.target[4].value;
+    wizardArray.push(wizardObj);
     renderWizard(wizardObj);
 }
 
@@ -33,6 +34,7 @@ function renderWizard(wizard) {
     wizardPicture.addEventListener("click", () => showWizardProfile(wizard));
     document.querySelector("#wizard-pics-here").appendChild(wizardPicture);
 }
+
 function showWizardProfile(wizard) {
     const profile = document.querySelector("#wizard-profile")
     profile.innerHTML=`
@@ -153,7 +155,31 @@ function showRatingComment(data, wizard) {
 }
 
 document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event));
+
 function sortWizards(event) {
+    let nameArray = [];
+    wizardArray.forEach(wizard => nameArray.push(wizard.name));
+    let arrOfSortedNames = nameArray.sort();
+    
+    let arrOfSortedWizards =[];
+    if (event.target.value === "name-a-z") {
+        arrOfSortedNames.forEach(name => {
+            wizardArray.forEach(wizard => {
+                if (wizard.name === name) {
+                    arrOfSortedWizards.push(wizard);
+                }
+            })
+        })
+        document.querySelector("#wizard-pics-here").innerHTML = "";
+        arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
+    }
+
+}
+
+
+
+
+/*function sortWizards(event) {
     let nameArray = [];
     let arrOfSortedWizards =[];
     fetch("https://hp-api.onrender.com/api/characters")
@@ -189,7 +215,8 @@ function sortWizards(event) {
         }
         
     })
-}
+}*/
+
 document.querySelector("#filter").addEventListener("change", event =>filterBy(event))
 function filterBy(event) {
     console.log(event.target.value.toLowerCase());
