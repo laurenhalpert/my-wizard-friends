@@ -74,10 +74,16 @@ function addFriend(wizard) {
     myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
     friendArray.push(wizard);
-    document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, friendArray))
-    console.log(friendArray);
 }
+document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, friendArray, renderFriend))
 
+function renderFriend(wizard) {
+    const myFriendPic = document.createElement("img");
+    myFriendPic.className = "wizard-thumbnail";
+    myFriendPic.src= wizard.image;
+    myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
+    document.querySelector("#my-friends-here").appendChild(myFriendPic);
+}
 
 function updateRatingComment(event, wizard) {
     event.preventDefault();
@@ -174,7 +180,13 @@ function sortWizards(event, arr, foo) {
                 }
             })
         })
-        document.querySelector("#wizard-pics-here").innerHTML = "";
+        if (foo === renderWizard) {
+            document.querySelector("#wizard-pics-here").innerHTML = "";
+        }
+        if (foo === renderFriend) {
+            document.querySelector("#my-friends-here").innerHTML = "";
+        }
+        //document.querySelector("#wizard-pics-here").innerHTML = "";
         arrOfSortedWizards.forEach(wizard => foo(wizard));
     }
     let reverseAlphabetical = nameArray.sort().reverse();
@@ -186,9 +198,16 @@ function sortWizards(event, arr, foo) {
                 }
             })
         })
-        document.querySelector("#wizard-pics-here").innerHTML = "";
+        if (foo === renderWizard) {
+            document.querySelector("#wizard-pics-here").innerHTML = "";
+        }
+        if (foo === renderFriend) {
+            document.querySelector("#my-friends-here").innerHTML = "";
+        }
+        //document.querySelector("#wizard-pics-here").innerHTML = "";
         arrOfSortedWizards.forEach(wizard => foo(wizard));
     }
+    
 }
 
 
