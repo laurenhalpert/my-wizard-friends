@@ -82,9 +82,10 @@ function addFriend(wizard) {
         showWizardProfile(wizard);
         document.querySelector("#del-btn").style.visibility="visible";
     });
-    removeFriendBtn.id ="remove-friend-btn";
+    removeFriendBtn.id =`remove-friend-btn-${wizard.id}`;
     removeFriendBtn.innerText= "Remove Friend";
     removeFriendBtn.addEventListener("click", (event) => removeFriend(event, wizard));
+    friendDiv.id = `friend-${wizard.id}`;
     friendDiv.className = "friend-div";
     friendDiv.appendChild(myFriendPic);
     friendDiv.appendChild(removeFriendBtn);
@@ -104,7 +105,7 @@ function removeFriend(event, wizard) {
     
     document.querySelectorAll(".wizard-thumbnail").forEach(elem => {
         if (elem.id === wizard.id) {
-            elem.remove();
+            document.querySelector(`#friend-${wizard.id}`).remove();
         }
     })
     
