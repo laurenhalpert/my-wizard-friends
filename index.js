@@ -1,4 +1,5 @@
 let wizardArray = [];
+let friendArray = [];
 document.addEventListener("DOMContentLoaded", () =>{
     function getWizards() {
         fetch("https://hp-api.onrender.com/api/characters")
@@ -72,6 +73,9 @@ function addFriend(wizard) {
     myFriendPic.src= wizard.image;
     myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
+    friendArray.push(wizard);
+    document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, friendArray))
+    console.log(friendArray);
 }
 
 
@@ -154,9 +158,9 @@ function showRatingComment(data, wizard) {
     } 
 }
 
-document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, wizardArray));
+document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, wizardArray, renderWizard));
 
-function sortWizards(event, arr) {
+function sortWizards(event, arr, foo) {
     let nameArray = [];
     arr.forEach(wizard => nameArray.push(wizard.name));
     let arrOfSortedNames = nameArray.sort();
@@ -171,7 +175,7 @@ function sortWizards(event, arr) {
             })
         })
         document.querySelector("#wizard-pics-here").innerHTML = "";
-        arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
+        arrOfSortedWizards.forEach(wizard => foo(wizard));
     }
     let reverseAlphabetical = nameArray.sort().reverse();
     if (event.target.value === "name-z-a") {
@@ -183,7 +187,7 @@ function sortWizards(event, arr) {
             })
         })
         document.querySelector("#wizard-pics-here").innerHTML = "";
-        arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
+        arrOfSortedWizards.forEach(wizard => foo(wizard));
     }
 }
 
@@ -248,9 +252,8 @@ function filterBy(event) {
     filteredArr.forEach(wizard=>{
         renderWizard(wizard);
     });
-    document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, filteredArr));
+    document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, filteredArr, renderWizard));
     
 }
-
 
 
