@@ -257,4 +257,20 @@ function filterBy(event) {
             }
         })
     }
+    if (event.target.value === "ravenclaw"){
+        wizardArray.forEach(wizard=> {
+            if (wizard.house.toLowerCase() === "ravenclaw") {
+                document.querySelector("#wizard-pics-here").innerHTML = "";
+            }
+        })
+        fetch ("https://hp-api.onrender.com/api/characters")
+        .then (resp=>resp.json())
+        .then(wizard => {
+            for (let i=0; i<10; i++) {
+                if (wizard[i].house.toLowerCase() === "ravenclaw") {
+                    renderWizard(wizard[i]);
+                }
+            }
+        })
+    }
 }
