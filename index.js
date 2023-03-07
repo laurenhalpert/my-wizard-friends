@@ -57,12 +57,16 @@ function showWizardProfile(wizard) {
     </div>
     <button id="add-friend-btn">Add As Friend</button>
     <button id="edit-btn">Edit</button>
-    <button id="del-btn">Delete</button>
+    <button id="del-btn">Remove Friend</button>
     `
     profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
     profile.querySelector("#add-friend-btn").addEventListener("click", () =>addFriend(wizard));
     profile.querySelector("#edit-form").addEventListener("submit", (event)=> updateRatingComment(event, wizard));
+    
 }
+
+
+
 function editRatingComment(){
     document.querySelector("#container-for-edit-form").style.visibility = "visible";
 }
