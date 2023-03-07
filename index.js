@@ -154,17 +154,17 @@ function showRatingComment(data, wizard) {
     } 
 }
 
-document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event));
+document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, wizardArray));
 
-function sortWizards(event) {
+function sortWizards(event, arr) {
     let nameArray = [];
-    wizardArray.forEach(wizard => nameArray.push(wizard.name));
+    arr.forEach(wizard => nameArray.push(wizard.name));
     let arrOfSortedNames = nameArray.sort();
     
     let arrOfSortedWizards =[];
     if (event.target.value === "name-a-z") {
         arrOfSortedNames.forEach(name => {
-            wizardArray.forEach(wizard => {
+            arr.forEach(wizard => {
                 if (wizard.name === name) {
                     arrOfSortedWizards.push(wizard);
                 }
@@ -176,7 +176,7 @@ function sortWizards(event) {
     let reverseAlphabetical = nameArray.sort().reverse();
     if (event.target.value === "name-z-a") {
         reverseAlphabetical.forEach(name => {
-            wizardArray.forEach(wizard => {
+            arr.forEach(wizard => {
                 if (wizard.name === name) {
                     arrOfSortedWizards.push(wizard);
                 }
@@ -245,107 +245,11 @@ function filterBy(event) {
         })
 
     }
-    filteredArr.forEach(wizard=>renderWizard(wizard));
+    filteredArr.forEach(wizard=>{
+        renderWizard(wizard);
+    });
+    
 }
 
 
 
-/*function filterBy(event) {
-    console.log(event.target.value.toLowerCase());
-    if (event.target.value === "male"){
-        wizardArray.forEach(wizard=> {
-            if (wizard.gender === "male") {
-                document.querySelector("#wizard-pics-here").innerHTML = "";
-            }
-        })
-        fetch ("https://hp-api.onrender.com/api/characters")
-        .then (resp=>resp.json())
-        .then(wizard => {
-            for (let i=0; i<10; i++) {
-                if (wizard[i].gender === "male") {
-                    renderWizard(wizard[i]);
-                }
-            }
-        })
-    }
-    if (event.target.value === "female"){
-        wizardArray.forEach(wizard=> {
-            if (wizard.gender === "female") {
-                document.querySelector("#wizard-pics-here").innerHTML = "";
-            }
-        })
-        fetch ("https://hp-api.onrender.com/api/characters")
-        .then (resp=>resp.json())
-        .then(wizard => {
-            for (let i=0; i<10; i++) {
-                if (wizard[i].gender === "female") {
-                    renderWizard(wizard[i]);
-                }
-            }
-        })
-    }
-    if (event.target.value === "gryffindor"){
-        wizardArray.forEach(wizard=> {
-            if (wizard.house.toLowerCase() === "gryffindor") {
-                document.querySelector("#wizard-pics-here").innerHTML = "";
-            }
-        })
-        fetch ("https://hp-api.onrender.com/api/characters")
-        .then (resp=>resp.json())
-        .then(wizard => {
-            for (let i=0; i<10; i++) {
-                if (wizard[i].house.toLowerCase() === "gryffindor") {
-                    renderWizard(wizard[i]);
-                }
-            }
-        })
-    }
-    if (event.target.value === "hufflepuff"){
-        wizardArray.forEach(wizard=> {
-            if (wizard.house.toLowerCase() === "hufflepuff") {
-                document.querySelector("#wizard-pics-here").innerHTML = "";
-            }
-        })
-        fetch ("https://hp-api.onrender.com/api/characters")
-        .then (resp=>resp.json())
-        .then(wizard => {
-            for (let i=0; i<10; i++) {
-                if (wizard[i].house.toLowerCase() === "hufflepuff") {
-                    renderWizard(wizard[i]);
-                }
-            }
-        })
-    }
-    if (event.target.value === "ravenclaw"){
-        wizardArray.forEach(wizard=> {
-            if (wizard.house.toLowerCase() === "ravenclaw") {
-                document.querySelector("#wizard-pics-here").innerHTML = "";
-            }
-        })
-        fetch ("https://hp-api.onrender.com/api/characters")
-        .then (resp=>resp.json())
-        .then(wizard => {
-            for (let i=0; i<10; i++) {
-                if (wizard[i].house.toLowerCase() === "ravenclaw") {
-                    renderWizard(wizard[i]);
-                }
-            }
-        })
-    }
-    if (event.target.value === "slytherin"){
-        wizardArray.forEach(wizard=> {
-            if (wizard.house.toLowerCase() === "slytherin") {
-                document.querySelector("#wizard-pics-here").innerHTML = "";
-            }
-        })
-        fetch ("https://hp-api.onrender.com/api/characters")
-        .then (resp=>resp.json())
-        .then(wizard => {
-            for (let i=0; i<10; i++) {
-                if (wizard[i].house.toLowerCase() === "slytherin") {
-                    renderWizard(wizard[i]);
-                }
-            }
-        })
-    }
-}*/
