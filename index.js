@@ -188,48 +188,69 @@ function sortWizards(event) {
 }
 
 
-
-
-/*function sortWizards(event) {
-    let nameArray = [];
-    let arrOfSortedWizards =[];
-    fetch("https://hp-api.onrender.com/api/characters")
-    .then(resp=>resp.json())
-    .then(wizard => {
-        for(let i=0; i<10; i++) {
-            nameArray.push(wizard[i].name);
-            
-        }
-        let sortedNames = nameArray.sort();
-        if(event.target.value === "name-a-z"){
-            sortedNames.forEach(name=> {
-                for (let i=0; i< 10; i++) {
-                    if(name === wizard[i].name){
-                        arrOfSortedWizards.push(wizard[i]);
-                    }
-                }
-            })
-            document.querySelector("#wizard-pics-here").innerHTML = "";
-            arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
-        }
-        let reverseAlphabetical = sortedNames.reverse();
-        if (event.target.value === "name-z-a") {
-            reverseAlphabetical.forEach(name=> {
-                for (let i=0; i< 10; i++) {
-                    if(name === wizard[i].name){
-                        arrOfSortedWizards.push(wizard[i]);
-                    }
-                }
-            })
-            document.querySelector("#wizard-pics-here").innerHTML = "";
-            arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
-        }
-        
-    })
-}*/
-
 document.querySelector("#filter").addEventListener("change", event =>filterBy(event))
 function filterBy(event) {
+    let filteredArr =[];
+    if (event.target.value === "male") {
+        wizardArray.forEach(wizard => {
+            if (wizard.gender === "male") {
+                filteredArr.push(wizard);
+                document.querySelector("#wizard-pics-here").innerHTML = "";
+            }
+        })
+
+    }
+    if (event.target.value === "female") {
+        wizardArray.forEach(wizard => {
+            if (wizard.gender === "female") {
+                filteredArr.push(wizard);
+                document.querySelector("#wizard-pics-here").innerHTML = "";
+            }
+        })
+
+    }
+    if (event.target.value === "gryffindor") {
+        wizardArray.forEach(wizard => {
+            if (wizard.house.toLowerCase() === "gryffindor") {
+                filteredArr.push(wizard);
+                document.querySelector("#wizard-pics-here").innerHTML = "";
+            }
+        })
+
+    }
+    if (event.target.value === "hufflepuff") {
+        wizardArray.forEach(wizard => {
+            if (wizard.house.toLowerCase() === "hufflepuff") {
+                filteredArr.push(wizard);
+                document.querySelector("#wizard-pics-here").innerHTML = "";
+            }
+        })
+
+    }
+    if (event.target.value === "ravenclaw") {
+        wizardArray.forEach(wizard => {
+            if (wizard.house.toLowerCase() === "ravenclaw") {
+                filteredArr.push(wizard);
+                document.querySelector("#wizard-pics-here").innerHTML = "";
+            }
+        })
+
+    }
+    if (event.target.value === "slytherin") {
+        wizardArray.forEach(wizard => {
+            if (wizard.house.toLowerCase() === "slytherin") {
+                filteredArr.push(wizard);
+                document.querySelector("#wizard-pics-here").innerHTML = "";
+            }
+        })
+
+    }
+    filteredArr.forEach(wizard=>renderWizard(wizard));
+}
+
+
+
+/*function filterBy(event) {
     console.log(event.target.value.toLowerCase());
     if (event.target.value === "male"){
         wizardArray.forEach(wizard=> {
@@ -327,4 +348,4 @@ function filterBy(event) {
             }
         })
     }
-}
+}*/
