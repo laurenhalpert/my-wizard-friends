@@ -74,7 +74,8 @@ function editRatingComment(){
 function addFriend(wizard) {
     const myFriendPic = document.createElement("img");
     const removeFriendBtn = document.createElement("button");
-
+    const friendDiv = document.createElement("div");
+    myFriendPic.id = `${wizard.id}`
     myFriendPic.className = "wizard-thumbnail";
     myFriendPic.src= wizard.image;
     myFriendPic.addEventListener("click", () => {
@@ -83,15 +84,31 @@ function addFriend(wizard) {
     });
     removeFriendBtn.id ="remove-friend-btn";
     removeFriendBtn.innerText= "Remove Friend";
-   
+    removeFriendBtn.addEventListener("click", (event) => removeFriend(event, wizard));
+    friendDiv.className = "friend-div";
+    friendDiv.appendChild(myFriendPic);
+    friendDiv.appendChild(removeFriendBtn);
     
    
-    document.querySelector("#my-friends-here").appendChild(myFriendPic);
-    document.querySelector("#my-friends-here").appendChild(removeFriendBtn);
+    document.querySelector("#my-friends-here").appendChild(friendDiv);
+  
+    //document.querySelector("#my-friends-here").appendChild(removeFriendBtn);
+    
     friendArray.push(wizard);
     document.querySelector("#del-btn").style.visibility="visible";
 }
 document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, friendArray, renderFriend))
+
+function removeFriend(event, wizard) {
+    //removes friend from friends here div
+    
+    document.querySelectorAll(".wizard-thumbnail").forEach(elem => {
+        if (elem.id === wizard.id) {
+            elem.remove();
+        }
+    })
+    
+}
 
 function renderFriend(wizard) {
     const myFriendPic = document.createElement("img");
