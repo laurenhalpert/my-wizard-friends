@@ -148,7 +148,7 @@ function filterBy(event, arr) {
     let filteredArr =[];
     let category = "";
 
-    function moreFilter(filterCriteria) {
+    function filterHelper(filterCriteria) {
         arr.forEach(wizard => {
             if (filterCriteria === "male" || filterCriteria === "female") {
                 category = "gender";
@@ -163,7 +163,7 @@ function filterBy(event, arr) {
         })
     }
     
-    moreFilter(event.target.value)
+    filterHelper(event.target.value)
     if (arr === wizardArray) {
         document.querySelector("#wizard-pics-here").innerHTML = "";
         filteredArr.map(wizard=>renderWizard(wizard))
