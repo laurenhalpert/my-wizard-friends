@@ -22,9 +22,17 @@ function handleSubmit(event) {
     event.preventDefault();
     
     let wizardObj={};
+    if (document.querySelector("#house").value=== "") {
+        let random = Math.floor(Math.random()*4)
+        wizardObj.house = document.querySelectorAll(".house-option")[random].value;
+    }
+    else {
+        wizardObj.house =event.target[2].value;
+    }
+
     wizardObj.name = event.target[0].value;
     wizardObj.gender = event.target[1].value;
-    wizardObj.house = event.target[2].value;
+    //wizardObj.house = event.target[2].value;
     wizardObj.patronus= event.target[3].value;
     wizardObj.image= event.target[4].value;
     wizardArray.push(wizardObj);
@@ -371,3 +379,4 @@ function filterBy(event, arr) {
 
 document.querySelector("#filter-friends").addEventListener("change", event => filterBy(event, friendArray) )
 
+console.log(document.querySelector("#house").value=== "")
