@@ -1,7 +1,9 @@
+//Variables
 let wizardArray = [];
 let friendArray = [];
 let ratingValue;
 
+//Event Listeners
 document.addEventListener("DOMContentLoaded", () =>{
     function getWizards() {
         fetch("https://hp-api.onrender.com/api/characters")
@@ -18,79 +20,40 @@ document.addEventListener("DOMContentLoaded", () =>{
 })
 
 document.querySelector("#create-wizard").addEventListener("submit", handleSubmit);
+
+document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, friendArray, renderFriend));
+
+document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, wizardArray, renderWizard));
+
+document.querySelector("#filter").addEventListener("change", event =>filterBy(event, wizardArray))
+
+document.querySelector("#filter-friends").addEventListener("change", event => filterBy(event, friendArray) )
+
+//Event Call Back Functions
 function handleSubmit(event) {
     event.preventDefault();
     
     let wizardObj={};
+    //if no house is selected
     if (document.querySelector("#house").value=== "") {
         let random = Math.floor(Math.random()*4)
         wizardObj.house = document.querySelectorAll(".house-option")[random].value;
     }
+    //if a house is selected
     else {
         wizardObj.house =event.target[2].value;
     }
 
     wizardObj.name = event.target[0].value;
     wizardObj.gender = event.target[1].value;
-    //wizardObj.house = event.target[2].value;
     wizardObj.patronus= event.target[3].value;
     wizardObj.image= event.target[4].value;
     wizardArray.push(wizardObj);
-    console.log(wizardObj)
+
     renderWizard(wizardObj);
+
     event.target.reset();
 }
-
-function renderWizard(wizard) {
-    const wizardPicture = document.createElement("img");
-    wizardPicture.src= wizard.image;
-    wizardPicture.className="wizard-thumbnail";
-    wizardPicture.addEventListener("click", () => showWizardProfile(wizard));
-    document.querySelector("#wizard-pics-here").appendChild(wizardPicture);
-}
-
-function showWizardProfile(wizard) {
-    const profile = document.querySelector("#wizard-profile")
-    profile.innerHTML=`
-    <img src="${wizard.image}" class="profile-picture">
-    <h2>${wizard.name}</h2>
-    <p>${wizard.gender}</p>
-    <p>House: ${wizard.house}<p>
-    <p>Patronus: ${hasPatronus(wizard)}</p>
-    <p id="rating"> Rating: <span id="num-rating">${getRatingsComments(wizard)}</span></p>
-    <p id="comments"> Comments: ${getRatingsComments(wizard)}</p>
-    <div id="container-for-edit-form">
-        <form id="edit-form">
-            <label>Rating: </label>
-            <input class = "radio" type="radio" id="rating-input-1" name="rating-input" value="&#9734">
-            <label for = "rating-input-1">&#9734</label>
-            <input class = "radio" type="radio" id="rating-input-2" name="rating-input" value="&#9734 &#9734">
-            <label for = "rating-input-2">&#9734 &#9734</label>
-            <input class = "radio" type="radio" id="rating-input-3" name="rating-input" value="&#9734 &#9734 &#9734">
-            <label for = "rating-input-3">&#9734 &#9734 &#9734</label>
-            <input class = "radio" type="radio" id="rating-input-4" name="rating-input" value="&#9734 &#9734 &#9734 &#9734">
-            <label for = "rating-input-4">&#9734 &#9734 &#9734 &#9734</label>
-            <input class = "radio" type="radio" id="rating-input-5" name="rating-input" value="&#9734 &#9734 &#9734 &#9734 &#9734">
-            <label for = "rating-input-5">&#9734 &#9734 &#9734 &#9734 &#9734</label>
-            <br>
-            <label for="comment-input">Comment: </label>
-            <textarea id="comment-input" name="comment-input" placeholder="Comment"></textarea>
-            <input type="submit" id="update-btn" value="Update">
-        </form>
-    </div>
-    <button id="add-friend-btn">Add As Friend</button>
-    <button id="edit-btn">Edit</button>
-    <button id="del-btn">Remove Friend</button>
-    `
-    profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
-    profile.querySelector("#add-friend-btn").addEventListener("click", () =>addFriend(wizard));
-    profile.querySelector("#edit-form").addEventListener("submit", (event)=> updateRatingComment(event, wizard));
-    profile.querySelector("#del-btn").addEventListener("click", (event) =>removeFriend(event,wizard));
-    //let radioButtons = profile.querySelectorAll(".radio");
-    //radioButtons.forEach(elem => elem.addEventListener("click", event=> getRatingValue(event)));
-}
-
-
 
 function editRatingComment(){
     document.querySelector("#container-for-edit-form").style.visibility = "visible";
@@ -107,133 +70,49 @@ function addFriend(wizard) {
         document.querySelector("#del-btn").style.visibility="visible";
     });
     
-    
-    
-    
-   
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
   
-    
     friendArray.push(wizard);
     document.querySelector("#del-btn").style.visibility="visible";
 }
-document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, friendArray, renderFriend))
 
 function removeFriend(event, wizard) {
-    //removes friend from friends here div
-    
     document.querySelectorAll(".wizard-thumbnail").forEach(elem => {
         if (elem.id === wizard.id) {
             elem.remove();
-            //document.querySelector(`#friend-${wizard.id}`).remove();
-            //document.querySelector("#del-btn").style.visibility = "hidden";
         }
     })
     
 }
-
-function renderFriend(wizard) {
-    const myFriendPic = document.createElement("img");
-    myFriendPic.className = "wizard-thumbnail";
-    myFriendPic.src= wizard.image;
-    myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
-    document.querySelector("#my-friends-here").appendChild(myFriendPic);
-}
-
-/*function getRatingValue(event) {
-    ratingValue= event.target.value;
-    console.log(ratingValue);
-}*/
 
 function updateRatingComment(event, wizard) {
     event.preventDefault();
     let likeObj={};
     likeObj.id = wizard.id;
     likeObj.forName = wizard.name;
-    
-    
-    if (document.querySelector("#rating").innerText.substring(8) === "undefined" && document.querySelector("#comments").innerText.substring(10) === "undefined"){
-        document.querySelectorAll(".radio").forEach(elem=>{
-            if(elem.checked) {
-                ratingValue= elem.value;
-                document.querySelector("#rating").innerText= `Rating: ${ratingValue}`;
-                likeObj.rating = ratingValue;
-            }
-        })
-        
+    function isEmptyComment() {
         if(event.target[5].value !== "") {
             document.querySelector("#comments").innerText = `Comments: ${event.target[5].value}`;
             likeObj.comment = event.target[5].value;
             
         }
-
+    }
+    
+    if (document.querySelector("#rating").innerText.substring(8) === "undefined" && document.querySelector("#comments").innerText.substring(10) === "undefined"){
+        getRadioRatings();
+        likeObj.rating =ratingValue;
+        
+        isEmptyComment();
         postRatingComment(likeObj);
     }
     else {
-        document.querySelectorAll(".radio").forEach(elem=>{
-            if(elem.checked) {
-                ratingValue= elem.value;
-                document.querySelector("#rating").innerText= `Rating: ${ratingValue}`;
-                likeObj.rating = ratingValue;
-            }
-        })
-        if(event.target[5].value !== "") {
-            document.querySelector("#comments").innerText = `Comments: ${event.target[5].value}`;
-            likeObj.comment = event.target[5].value;
-            
-        }
+        getRadioRatings();
+        likeObj.rating =ratingValue;
+        isEmptyComment();
         patchRatingComment(likeObj)
     } 
     event.target.reset();
 }
-
-function patchRatingComment(likeObj){
-    fetch(`http://localhost:3000/ratingsComments/${likeObj.id}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify(likeObj)
-    })
-    .then(resp => resp.json())
-    .then(data => console.log(data))
-}
-function postRatingComment(likeObj) {
-    fetch("http://localhost:3000/ratingsComments", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify(likeObj)
-    })
-    .then(resp=>resp.json())
-    .then(data => console.log(data))
-}
-
-function hasPatronus(wizard) {
-    if(wizard.patronus !== "") {
-        return wizard.patronus;
-    } else {
-        return "unknown";
-    }
-}
-
-function getRatingsComments(wizard){
-    fetch("http://localhost:3000/ratingsComments/")
-    .then(resp => resp.json())
-    .then(data=>data.forEach(elem=> showRatingComment(elem, wizard)))
-}
-
-function showRatingComment(data, wizard) {
-    if (wizard.name === data.forName) {
-        document.querySelector("#rating").innerText = `Rating: ${data.rating}`;
-        document.querySelector("#comments").innerText = `Comments: ${data.comment}`;
-    } 
-}
-
-document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, wizardArray, renderWizard));
 
 function sortWizards(event, arr, foo) {
     let nameArray = [];
@@ -277,8 +156,6 @@ function sortWizards(event, arr, foo) {
     
 }
 
-
-document.querySelector("#filter").addEventListener("change", event =>filterBy(event, wizardArray))
 function filterBy(event, arr) {
     let filteredArr =[];
     if (event.target.value === "male") {
@@ -378,6 +255,119 @@ function filterBy(event, arr) {
     document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, filteredArr, renderFriend))
 }
 
-document.querySelector("#filter-friends").addEventListener("change", event => filterBy(event, friendArray) )
+//Helper Functions
+function renderWizard(wizard) {
+    const wizardPicture = document.createElement("img");
+    wizardPicture.src= wizard.image;
+    wizardPicture.className="wizard-thumbnail";
+    wizardPicture.addEventListener("click", () => showWizardProfile(wizard));
+    document.querySelector("#wizard-pics-here").appendChild(wizardPicture);
+}
 
-console.log(document.querySelector("#house").value=== "")
+function renderFriend(wizard) {
+    const myFriendPic = document.createElement("img");
+    myFriendPic.className = "wizard-thumbnail";
+    myFriendPic.src= wizard.image;
+    myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
+    document.querySelector("#my-friends-here").appendChild(myFriendPic);
+}
+
+function hasPatronus(wizard) {
+    if(wizard.patronus !== "") {
+        return wizard.patronus;
+    } else {
+        return "unknown";
+    }
+}
+
+function getRadioRatings() {
+    document.querySelectorAll(".radio").forEach(elem=>{
+        if(elem.checked) {
+            ratingValue= elem.value;
+            document.querySelector("#rating").innerText= `Rating: ${ratingValue}`;
+        }
+    })
+}
+
+//Event Call Back Function && helper function
+function showWizardProfile(wizard) {
+    const profile = document.querySelector("#wizard-profile")
+    profile.innerHTML=`
+    <img src="${wizard.image}" class="profile-picture">
+    <h2>${wizard.name}</h2>
+    <p>${wizard.gender}</p>
+    <p>House: ${wizard.house}<p>
+    <p>Patronus: ${hasPatronus(wizard)}</p>
+    <p id="rating"> Rating: <span id="num-rating">${getRatingsComments(wizard)}</span></p>
+    <p id="comments"> Comments: ${getRatingsComments(wizard)}</p>
+    <div id="container-for-edit-form">
+        <form id="edit-form">
+            <label>Rating: </label>
+            <input class = "radio" type="radio" id="rating-input-1" name="rating-input" value="&#9734">
+            <label for = "rating-input-1">&#9734</label>
+            <input class = "radio" type="radio" id="rating-input-2" name="rating-input" value="&#9734 &#9734">
+            <label for = "rating-input-2">&#9734 &#9734</label>
+            <input class = "radio" type="radio" id="rating-input-3" name="rating-input" value="&#9734 &#9734 &#9734">
+            <label for = "rating-input-3">&#9734 &#9734 &#9734</label>
+            <input class = "radio" type="radio" id="rating-input-4" name="rating-input" value="&#9734 &#9734 &#9734 &#9734">
+            <label for = "rating-input-4">&#9734 &#9734 &#9734 &#9734</label>
+            <input class = "radio" type="radio" id="rating-input-5" name="rating-input" value="&#9734 &#9734 &#9734 &#9734 &#9734">
+            <label for = "rating-input-5">&#9734 &#9734 &#9734 &#9734 &#9734</label>
+            <br>
+            <label for="comment-input">Comment: </label>
+            <textarea id="comment-input" name="comment-input" placeholder="Comment"></textarea>
+            <input type="submit" id="update-btn" value="Update">
+        </form>
+    </div>
+    <button id="add-friend-btn">Add As Friend</button>
+    <button id="edit-btn">Edit</button>
+    <button id="del-btn">Remove Friend</button>
+    `
+    profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
+    profile.querySelector("#add-friend-btn").addEventListener("click", () =>addFriend(wizard));
+    profile.querySelector("#edit-form").addEventListener("submit", (event)=> updateRatingComment(event, wizard));
+    profile.querySelector("#del-btn").addEventListener("click", (event) =>removeFriend(event,wizard));
+}
+
+
+
+//fetch functions
+
+function patchRatingComment(likeObj){
+    fetch(`http://localhost:3000/ratingsComments/${likeObj.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(likeObj)
+    })
+    .then(resp => resp.json())
+    .then(data => console.log(data))
+}
+function postRatingComment(likeObj) {
+    fetch("http://localhost:3000/ratingsComments", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(likeObj)
+    })
+    .then(resp=>resp.json())
+    .then(data => console.log(data))
+}
+
+
+function getRatingsComments(wizard){
+    fetch("http://localhost:3000/ratingsComments/")
+    .then(resp => resp.json())
+    .then(data=>data.forEach(elem=> showRatingComment(elem, wizard)))
+}
+
+function showRatingComment(data, wizard) {
+    if (wizard.name === data.forName) {
+        document.querySelector("#rating").innerText = `Rating: ${data.rating}`;
+        document.querySelector("#comments").innerText = `Comments: ${data.comment}`;
+    } 
+}
