@@ -3,7 +3,7 @@
     {
       "id": "9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8",
       "forName": "Harry Potter",
-      "rating": "☆",
+      "rating": "☆ ☆ ☆",
       "comment": "the chosen one"
     },
     {
@@ -29,6 +29,12 @@
       "forName": "Ron Weasley",
       "rating": "3",
       "comment": "he's an okay friend"
+    },
+    {
+      "id": "3569d265-bd27-44d8-88e8-82fb0a848374",
+      "forName": "Severus Snape",
+      "comment": "always",
+      "rating": "☆ ☆ ☆"
     }
   ]
 }

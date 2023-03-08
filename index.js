@@ -75,14 +75,11 @@ function showWizardProfile(wizard) {
     profile.querySelector("#add-friend-btn").addEventListener("click", () =>addFriend(wizard));
     profile.querySelector("#edit-form").addEventListener("submit", (event)=> updateRatingComment(event, wizard));
     profile.querySelector("#del-btn").addEventListener("click", (event) =>removeFriend(event,wizard));
-    let radioButtons = profile.querySelectorAll(".radio");
-    radioButtons.forEach(elem => elem.addEventListener("click", event=> getRatingValue(event)));
+    //let radioButtons = profile.querySelectorAll(".radio");
+    //radioButtons.forEach(elem => elem.addEventListener("click", event=> getRatingValue(event)));
 }
 
-function getRatingValue(event) {
-    ratingValue = event.target.value;
-    console.log(ratingValue);
-}
+
 
 function editRatingComment(){
     document.querySelector("#container-for-edit-form").style.visibility = "visible";
@@ -132,17 +129,27 @@ function renderFriend(wizard) {
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
 }
 
+/*function getRatingValue(event) {
+    ratingValue= event.target.value;
+    console.log(ratingValue);
+}*/
+
 function updateRatingComment(event, wizard) {
     event.preventDefault();
-    console.log(event.target[5])
     let likeObj={};
     likeObj.id = wizard.id;
     likeObj.forName = wizard.name;
+    
+    
     if (document.querySelector("#rating").innerText.substring(8) === "undefined" && document.querySelector("#comments").innerText.substring(10) === "undefined"){
-        if (event.target[0].value !== ""){
-            document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
-            likeObj.rating = event.target[0].value;
-        }
+        document.querySelectorAll(".radio").forEach(elem=>{
+            if(elem.checked) {
+                ratingValue= elem.value;
+                document.querySelector("#rating").innerText= `Rating: ${ratingValue}`;
+                likeObj.rating = ratingValue;
+            }
+        })
+        
         if(event.target[5].value !== "") {
             document.querySelector("#comments").innerText = `Comments: ${event.target[5].value}`;
             likeObj.comment = event.target[5].value;
@@ -152,10 +159,13 @@ function updateRatingComment(event, wizard) {
         postRatingComment(likeObj);
     }
     else {
-        if (event.target[0].value !== ""){
-            document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
-            likeObj.rating = event.target[0].value;
-        }
+        document.querySelectorAll(".radio").forEach(elem=>{
+            if(elem.checked) {
+                ratingValue= elem.value;
+                document.querySelector("#rating").innerText= `Rating: ${ratingValue}`;
+                likeObj.rating = ratingValue;
+            }
+        })
         if(event.target[5].value !== "") {
             document.querySelector("#comments").innerText = `Comments: ${event.target[5].value}`;
             likeObj.comment = event.target[5].value;
