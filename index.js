@@ -50,15 +50,15 @@ function showWizardProfile(wizard) {
     <div id="container-for-edit-form">
         <form id="edit-form">
             <label>Rating: </label>
-            <input type="radio" id="rating-input-1" name="rating-input" value="&#9734">
+            <input class = "radio" type="radio" id="rating-input-1" name="rating-input" value="&#9734">
             <label for = "rating-input-1">&#9734</label>
-            <input type="radio" id="rating-input-2" name="rating-input" value="&#9734 &#9734">
+            <input class = "radio" type="radio" id="rating-input-2" name="rating-input" value="&#9734 &#9734">
             <label for = "rating-input-2">&#9734 &#9734</label>
-            <input type="radio" id="rating-input-3" name="rating-input" value="&#9734 &#9734 &#9734">
+            <input class = "radio" type="radio" id="rating-input-3" name="rating-input" value="&#9734 &#9734 &#9734">
             <label for = "rating-input-3">&#9734 &#9734 &#9734</label>
-            <input type="radio" id="rating-input-4" name="rating-input" value="&#9734 &#9734 &#9734 &#9734">
+            <input class = "radio" type="radio" id="rating-input-4" name="rating-input" value="&#9734 &#9734 &#9734 &#9734">
             <label for = "rating-input-4">&#9734 &#9734 &#9734 &#9734</label>
-            <input type="radio" id="rating-input-5" name="rating-input" value="&#9734 &#9734 &#9734 &#9734 &#9734">
+            <input class = "radio" type="radio" id="rating-input-5" name="rating-input" value="&#9734 &#9734 &#9734 &#9734 &#9734">
             <label for = "rating-input-5">&#9734 &#9734 &#9734 &#9734 &#9734</label>
             <br>
             <label for="comment-input">Comment: </label>
@@ -128,6 +128,7 @@ function renderFriend(wizard) {
 
 function updateRatingComment(event, wizard) {
     event.preventDefault();
+    console.log(event.target[5])
     let likeObj={};
     likeObj.id = wizard.id;
     likeObj.forName = wizard.name;
@@ -136,9 +137,9 @@ function updateRatingComment(event, wizard) {
             document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
             likeObj.rating = event.target[0].value;
         }
-        if(event.target[1].value !== "") {
-            document.querySelector("#comments").innerText = `Comments: ${event.target[1].value}`;
-            likeObj.comment = event.target[1].value;
+        if(event.target[5].value !== "") {
+            document.querySelector("#comments").innerText = `Comments: ${event.target[5].value}`;
+            likeObj.comment = event.target[5].value;
             
         }
 
@@ -149,9 +150,9 @@ function updateRatingComment(event, wizard) {
             document.querySelector("#rating").innerText= `Rating: ${event.target[0].value}`;
             likeObj.rating = event.target[0].value;
         }
-        if(event.target[1].value !== "") {
-            document.querySelector("#comments").innerText = `Comments: ${event.target[1].value}`;
-            likeObj.comment = event.target[1].value;
+        if(event.target[5].value !== "") {
+            document.querySelector("#comments").innerText = `Comments: ${event.target[5].value}`;
+            likeObj.comment = event.target[5].value;
             
         }
         patchRatingComment(likeObj)
