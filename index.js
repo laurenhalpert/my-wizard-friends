@@ -369,4 +369,8 @@ function filterBy(event, arr) {
 
 document.querySelector("#filter-friends").addEventListener("change", event => filterBy(event, friendArray) )
 
+document.querySelector("#sorting-hat").addEventListener("click", whatIsMyHouse);
 
+function whatIsMyHouse() {
+    console.log(document.querySelectorAll(".house-option"));
+}
