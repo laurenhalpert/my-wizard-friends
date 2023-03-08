@@ -35,6 +35,12 @@
       "forName": "Severus Snape",
       "comment": "always",
       "rating": "☆ ☆ ☆"
+    },
+    {
+      "id": "8f9aa40b-5d7c-441e-ad32-4564ecda3b70",
+      "forName": "Cho Chang",
+      "rating": "☆ ☆ ☆ ☆ ☆",
+      "comment": "she's cool"
     }
   ]
 }
