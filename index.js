@@ -49,8 +49,18 @@ function showWizardProfile(wizard) {
     <p id="comments"> Comments: ${getRatingsComments(wizard)}</p>
     <div id="container-for-edit-form">
         <form id="edit-form">
-            <label for="rating-input">Rating: </label>
-            <input type="button" id="rating-input" name="rating-input" value = "&#9734 &#9734 &#9734 &#9734 &#9734">
+            <label>Rating: </label>
+            <input type="radio" id="rating-input-1" name="rating-input" value="&#9734">
+            <label for = "rating-input-1">&#9734</label>
+            <input type="radio" id="rating-input-2" name="rating-input" value="&#9734 &#9734">
+            <label for = "rating-input-2">&#9734 &#9734</label>
+            <input type="radio" id="rating-input-3" name="rating-input" value="&#9734 &#9734 &#9734">
+            <label for = "rating-input-3">&#9734 &#9734 &#9734</label>
+            <input type="radio" id="rating-input-4" name="rating-input" value="&#9734 &#9734 &#9734 &#9734">
+            <label for = "rating-input-4">&#9734 &#9734 &#9734 &#9734</label>
+            <input type="radio" id="rating-input-5" name="rating-input" value="&#9734 &#9734 &#9734 &#9734 &#9734">
+            <label for = "rating-input-5">&#9734 &#9734 &#9734 &#9734 &#9734</label>
+            <br>
             <label for="comment-input">Comment: </label>
             <textarea id="comment-input" name="comment-input" placeholder="Comment"></textarea>
             <input type="submit" id="update-btn" value="Update">
