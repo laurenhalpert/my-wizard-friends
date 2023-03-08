@@ -1,5 +1,6 @@
 let wizardArray = [];
 let friendArray = [];
+let ratingValue;
 
 document.addEventListener("DOMContentLoaded", () =>{
     function getWizards() {
@@ -73,10 +74,15 @@ function showWizardProfile(wizard) {
     profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
     profile.querySelector("#add-friend-btn").addEventListener("click", () =>addFriend(wizard));
     profile.querySelector("#edit-form").addEventListener("submit", (event)=> updateRatingComment(event, wizard));
-    profile.querySelector("#del-btn").addEventListener("click", (event) =>removeFriend(event,wizard))
+    profile.querySelector("#del-btn").addEventListener("click", (event) =>removeFriend(event,wizard));
+    let radioButtons = profile.querySelectorAll(".radio");
+    radioButtons.forEach(elem => elem.addEventListener("click", event=> getRatingValue(event)));
 }
 
-
+function getRatingValue(event) {
+    ratingValue = event.target.value;
+    console.log(ratingValue);
+}
 
 function editRatingComment(){
     document.querySelector("#container-for-edit-form").style.visibility = "visible";
