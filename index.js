@@ -38,6 +38,7 @@ function handleSubmit(event) {
     wizardArray.push(wizardObj);
     console.log(wizardObj)
     renderWizard(wizardObj);
+    event.target.reset();
 }
 
 function renderWizard(wizard) {
