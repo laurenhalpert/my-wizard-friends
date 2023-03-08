@@ -146,99 +146,33 @@ function sortWizards(event, arr, foo) {
 
 function filterBy(event, arr) {
     let filteredArr =[];
-    if (event.target.value === "male") {
+    let category = "";
+
+    function moreFilter(filterCriteria) {
         arr.forEach(wizard => {
-            if (wizard.gender === "male") {
-                filteredArr.push(wizard);
-                if (arr === wizardArray) {
-                    document.querySelector("#wizard-pics-here").innerHTML = "";
-                }
-                if (arr === friendArray) {
-                    document.querySelector("#my-friends-here").innerHTML = "";
-                }
+            if (filterCriteria === "male" || filterCriteria === "female") {
+                category = "gender";
                 
-            }
-        })
+            } else{
+                category = "house";
 
-    }
-    if (event.target.value === "female") {
-        arr.forEach(wizard => {
-            if (wizard.gender === "female") {
+            }
+            if (wizard[category].toLowerCase() === filterCriteria) {
                 filteredArr.push(wizard);
-                if (arr === wizardArray) {
-                    document.querySelector("#wizard-pics-here").innerHTML = "";
-                }
-                if (arr === friendArray) {
-                    document.querySelector("#my-friends-here").innerHTML = "";
-                }
-            }
+            }; 
         })
-
     }
-    if (event.target.value === "gryffindor") {
-        arr.forEach(wizard => {
-            if (wizard.house.toLowerCase() === "gryffindor") {
-                filteredArr.push(wizard);
-                if (arr === wizardArray) {
-                    document.querySelector("#wizard-pics-here").innerHTML = "";
-                }
-                if (arr === friendArray) {
-                    document.querySelector("#my-friends-here").innerHTML = "";
-                }
-            }
-        })
-
+    
+    moreFilter(event.target.value)
+    if (arr === wizardArray) {
+        document.querySelector("#wizard-pics-here").innerHTML = "";
+        filteredArr.map(wizard=>renderWizard(wizard))
     }
-    if (event.target.value === "hufflepuff") {
-        arr.forEach(wizard => {
-            if (wizard.house.toLowerCase() === "hufflepuff") {
-                filteredArr.push(wizard);
-                if (arr === wizardArray) {
-                    document.querySelector("#wizard-pics-here").innerHTML = "";
-                }
-                if (arr === friendArray) {
-                    document.querySelector("#my-friends-here").innerHTML = "";
-                }
-            }
-        })
-
+    if (arr === friendArray) {
+        document.querySelector("#my-friends-here").innerHTML = "";
+        filteredArr.map(wizard=> renderFriend(wizard))
     }
-    if (event.target.value === "ravenclaw") {
-        arr.forEach(wizard => {
-            if (wizard.house.toLowerCase() === "ravenclaw") {
-                filteredArr.push(wizard);
-                if (arr === wizardArray) {
-                    document.querySelector("#wizard-pics-here").innerHTML = "";
-                }
-                if (arr === friendArray) {
-                    document.querySelector("#my-friends-here").innerHTML = "";
-                }
-            }
-        })
-
-    }
-    if (event.target.value === "slytherin") {
-        arr.forEach(wizard => {
-            if (wizard.house.toLowerCase() === "slytherin") {
-                filteredArr.push(wizard);
-                if (arr === wizardArray) {
-                    document.querySelector("#wizard-pics-here").innerHTML = "";
-                }
-                if (arr === friendArray) {
-                    document.querySelector("#my-friends-here").innerHTML = "";
-                }
-            }
-        })
-
-    }
-    filteredArr.forEach(wizard=>{
-        if (arr === wizardArray) {
-            renderWizard(wizard)
-        }
-        if (arr === friendArray) {
-            renderFriend(wizard);
-        }
-    });
+   
     document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, filteredArr, renderWizard));
     document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, filteredArr, renderFriend))
 }
