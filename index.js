@@ -2,6 +2,7 @@
 let wizardArray = [];
 let friendArray = [];
 let ratingValue;
+const randomPatronus = ["lion", "wolf", "eagle", "duck", "bear", "turtle", "kangaroo", "penguin", "dolphin", "shark"];
 
 //Event Listeners
 document.addEventListener("DOMContentLoaded", () =>{
@@ -44,9 +45,18 @@ function handleSubmit(event) {
         wizardObj.house =event.target[2].value;
     }
 
+    //if no patronus given
+    if (document.querySelector("#patronus").value === "") {
+        let random = Math.floor(Math.random()*10)
+        wizardObj.patronus = randomPatronus[random];
+    }
+    else {
+        wizardObj.patronus = event.target[3].value;
+    }
+    
     wizardObj.name = event.target[0].value;
     wizardObj.gender = event.target[1].value;
-    wizardObj.patronus= event.target[3].value;
+    
     wizardObj.image= event.target[4].value;
     wizardArray.push(wizardObj);
 
