@@ -184,7 +184,7 @@ function updateRatingComment(event, wizard) {
         }
         patchRatingComment(likeObj)
     } 
-    
+    event.target.reset();
 }
 
 function patchRatingComment(likeObj){
