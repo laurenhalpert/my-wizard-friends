@@ -90,11 +90,11 @@ function updateRatingComment(event, wizard) {
     let likeObj={};
     likeObj.id = wizard.id;
     likeObj.forName = wizard.name;
+
     function isEmptyComment() {
         if(event.target[5].value !== "") {
             document.querySelector("#comments").innerText = `Comments: ${event.target[5].value}`;
             likeObj.comment = event.target[5].value;
-            
         }
     }
     
