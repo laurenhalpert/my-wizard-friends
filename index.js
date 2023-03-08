@@ -120,7 +120,7 @@ function sortWizards(event, arr, foo) {
     let arrOfSortedNames = nameArray.sort();
     
     let arrOfSortedWizards =[];
-    function moreSort(sortedArr) {
+    function sortHelper(sortedArr) {
         sortedArr.forEach(name => {
             arr.forEach(wizard => {
                 if (wizard.name === name) {
@@ -137,10 +137,10 @@ function sortWizards(event, arr, foo) {
         arrOfSortedWizards.forEach(wizard => foo(wizard));
     }
     if (event.target.value === "name-a-z"){
-        moreSort(arrOfSortedNames);
+        sortHelper(arrOfSortedNames);
     } else if (event.target.value ==="name-z-a"){
         let reverseAlphabetical = nameArray.sort().reverse();
-        moreSort(reverseAlphabetical);
+        sortHelper(reverseAlphabetical);
     }
 }
 
