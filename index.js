@@ -91,7 +91,7 @@ function updateRatingComment(event, wizard) {
     likeObj.id = wizard.id;
     likeObj.forName = wizard.name;
 
-    function isEmptyComment() {
+    function isNotEmptyComment() {
         if(event.target[5].value !== "") {
             document.querySelector("#comments").innerText = `Comments: ${event.target[5].value}`;
             likeObj.comment = event.target[5].value;
@@ -102,13 +102,13 @@ function updateRatingComment(event, wizard) {
         getRadioRatings();
         likeObj.rating =ratingValue;
         
-        isEmptyComment();
+        isNotEmptyComment();
         postRatingComment(likeObj);
     }
     else {
         getRadioRatings();
         likeObj.rating =ratingValue;
-        isEmptyComment();
+        isNotEmptyComment();
         patchRatingComment(likeObj)
     } 
     event.target.reset();
@@ -120,7 +120,13 @@ function sortWizards(event, arr, foo) {
     let arrOfSortedNames = nameArray.sort();
     
     let arrOfSortedWizards =[];
-    function sortHelper(sortedArr) {
+    function sortHelper(sortCriteria) {
+        if (sortCriteria === "name-a-z") {
+            sortedArr = arrOfSortedNames;
+        } else if (sortCriteria === "name-z-a") {
+            let reverseAlphabetical = nameArray.sort().reverse();
+            sortedArr = reverseAlphabetical
+        }
         sortedArr.forEach(name => {
             arr.forEach(wizard => {
                 if (wizard.name === name) {
@@ -136,12 +142,8 @@ function sortWizards(event, arr, foo) {
         }
         arrOfSortedWizards.forEach(wizard => foo(wizard));
     }
-    if (event.target.value === "name-a-z"){
-        sortHelper(arrOfSortedNames);
-    } else if (event.target.value ==="name-z-a"){
-        let reverseAlphabetical = nameArray.sort().reverse();
-        sortHelper(reverseAlphabetical);
-    }
+    sortHelper(event.target.value)
+    
 }
 
 function filterBy(event, arr) {
@@ -209,6 +211,13 @@ function getRadioRatings() {
             document.querySelector("#rating").innerText= `Rating: ${ratingValue}`;
         }
     })
+}
+
+function showRatingComment(data, wizard) {
+    if (wizard.name === data.forName) {
+        document.querySelector("#rating").innerText = `Rating: ${data.rating}`;
+        document.querySelector("#comments").innerText = `Comments: ${data.comment}`;
+    } 
 }
 
 //Event Call Back Function && helper function
@@ -287,9 +296,3 @@ function getRatingsComments(wizard){
     .then(data=>data.forEach(elem=> showRatingComment(elem, wizard)))
 }
 
-function showRatingComment(data, wizard) {
-    if (wizard.name === data.forName) {
-        document.querySelector("#rating").innerText = `Rating: ${data.rating}`;
-        document.querySelector("#comments").innerText = `Comments: ${data.comment}`;
-    } 
-}
