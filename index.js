@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 document.querySelector("#create-wizard").addEventListener("submit", handleSubmit);
 function handleSubmit(event) {
     event.preventDefault();
+    
     let wizardObj={};
     wizardObj.name = event.target[0].value;
     wizardObj.gender = event.target[1].value;
@@ -27,6 +28,7 @@ function handleSubmit(event) {
     wizardObj.patronus= event.target[3].value;
     wizardObj.image= event.target[4].value;
     wizardArray.push(wizardObj);
+    console.log(wizardObj)
     renderWizard(wizardObj);
 }
 
@@ -369,8 +371,3 @@ function filterBy(event, arr) {
 
 document.querySelector("#filter-friends").addEventListener("change", event => filterBy(event, friendArray) )
 
-document.querySelector("#sorting-hat").addEventListener("click", whatIsMyHouse);
-
-function whatIsMyHouse() {
-    console.log(document.querySelectorAll(".house-option"));
-}
