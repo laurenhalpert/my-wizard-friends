@@ -120,8 +120,8 @@ function sortWizards(event, arr, foo) {
     let arrOfSortedNames = nameArray.sort();
     
     let arrOfSortedWizards =[];
-    if (event.target.value === "name-a-z") {
-        arrOfSortedNames.forEach(name => {
+    function moreSort(sortedArr) {
+        sortedArr.forEach(name => {
             arr.forEach(wizard => {
                 if (wizard.name === name) {
                     arrOfSortedWizards.push(wizard);
@@ -136,24 +136,12 @@ function sortWizards(event, arr, foo) {
         }
         arrOfSortedWizards.forEach(wizard => foo(wizard));
     }
-    let reverseAlphabetical = nameArray.sort().reverse();
-    if (event.target.value === "name-z-a") {
-        reverseAlphabetical.forEach(name => {
-            arr.forEach(wizard => {
-                if (wizard.name === name) {
-                    arrOfSortedWizards.push(wizard);
-                }
-            })
-        })
-        if (foo === renderWizard) {
-            document.querySelector("#wizard-pics-here").innerHTML = "";
-        }
-        if (foo === renderFriend) {
-            document.querySelector("#my-friends-here").innerHTML = "";
-        }
-        arrOfSortedWizards.forEach(wizard => foo(wizard));
+    if (event.target.value === "name-a-z"){
+        moreSort(arrOfSortedNames);
+    } else if (event.target.value ==="name-z-a"){
+        let reverseAlphabetical = nameArray.sort().reverse();
+        moreSort(reverseAlphabetical);
     }
-    
 }
 
 function filterBy(event, arr) {
