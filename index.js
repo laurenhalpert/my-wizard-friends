@@ -103,7 +103,7 @@ function updateRatingComment(event, wizard) {
 
     function isNotEmptyComment() {
         if(event.target[5].value !== "") {
-            document.querySelector("#comments").innerText = `Comments: ${event.target[5].value}`;
+            document.querySelector("#comments").innerText = `Comment: ${event.target[5].value}`;
             likeObj.comment = event.target[5].value;
         }
     }
@@ -226,7 +226,7 @@ function getRadioRatings() {
 function showRatingComment(data, wizard) {
     if (wizard.name === data.forName) {
         document.querySelector("#rating").innerText = `Rating: ${data.rating}`;
-        document.querySelector("#comments").innerText = `Comments: ${data.comment}`;
+        document.querySelector("#comments").innerText = `Comment: ${data.comment}`;
     } 
 }
 
@@ -240,7 +240,7 @@ function showWizardProfile(wizard) {
     <p>House: ${wizard.house}<p>
     <p>Patronus: ${hasPatronus(wizard)}</p>
     <p id="rating"> Rating: <span id="num-rating">${getRatingsComments(wizard)}</span></p>
-    <p id="comments"> Comments: ${getRatingsComments(wizard)}</p>
+    <p id="comments"> Comment: ${getRatingsComments(wizard)}</p>
     <div id="container-for-edit-form">
         <form id="edit-form">
             <label>Rating: </label>
@@ -261,7 +261,7 @@ function showWizardProfile(wizard) {
         </form>
     </div>
     <button id="add-friend-btn">Add As Friend</button>
-    <button id="edit-btn">Edit</button>
+    <button id="edit-btn">Edit Rating/Comment</button>
     <button id="del-btn">Remove Friend</button>
     `
     profile.querySelector("#edit-btn").addEventListener("click", editRatingComment);
