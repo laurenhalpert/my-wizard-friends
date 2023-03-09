@@ -20,7 +20,7 @@ This web application is a way for users to assemble their own group of friends f
 -Sort filtered wizards alphabetically or reverse alphabetically
 
 
-## Acknowledgmnets
+## Acknowledgments
 
 Used API: https://hp-api.onrender.com/api/characters
 
