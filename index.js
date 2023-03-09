@@ -5,20 +5,7 @@ let ratingValue;
 const randomPatronus = ["lion", "wolf", "eagle", "duck", "bear", "turtle", "kangaroo", "penguin", "dolphin", "shark"];
 
 //Event Listeners
-document.addEventListener("DOMContentLoaded", () =>{
-    function getWizards() {
-        fetch("https://hp-api.onrender.com/api/characters")
-        .then(resp => resp.json())
-        .then(wizard => {
-            for (let i =0; i<10; i++) {
-                renderWizard(wizard[i]);
-                showWizardProfile(wizard[0]);
-                wizardArray.push(wizard[i]);
-            }
-        })
-    }
-    getWizards();
-})
+document.addEventListener("DOMContentLoaded", () => getWizards())
 
 document.querySelector("#create-wizard").addEventListener("submit", handleSubmit);
 
@@ -33,6 +20,7 @@ document.querySelector("#filter").addEventListener("change", event =>filterBy(ev
 //Event Call Back Functions
 function handleSubmit(event) {
     event.preventDefault();
+    document.querySelector("#wizard-pics-here").innerHTML = "";
     
     let wizardObj={};
     //if no house is selected
@@ -61,6 +49,13 @@ function handleSubmit(event) {
     wizardArray.push(wizardObj);
 
     renderWizard(wizardObj);
+    fetch("https://hp-api.onrender.com/api/characters")
+    .then(resp => resp.json())
+    .then(wizards => {
+        for (let i = 0; i < 10; i ++) {
+            renderWizard(wizards[i])
+        }
+    })
 
     event.target.reset();
 }
@@ -273,6 +268,17 @@ function showWizardProfile(wizard) {
 
 
 //fetch functions
+function getWizards() {
+    fetch("https://hp-api.onrender.com/api/characters")
+    .then(resp => resp.json())
+    .then(wizard => {
+        for (let i =0; i<10; i++) {
+            renderWizard(wizard[i]);
+            showWizardProfile(wizard[0]);
+            wizardArray.push(wizard[i]);
+        }
+    })
+}
 
 function patchRatingComment(likeObj){
     fetch(`http://localhost:3000/ratingsComments/${likeObj.id}`, {
