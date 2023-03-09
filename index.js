@@ -156,12 +156,12 @@ function sortWizards(event) {
     
 }
 
-function filterBy(event, arr) {
+function filterBy(event) {
     let filteredArr =[];
     let category = "";
 
     function filterHelper(filterCriteria) {
-        arr.forEach(wizard => {
+        wizardArray.forEach(wizard => {
             if (filterCriteria === "male" || filterCriteria === "female") {
                 category = "gender";
                 
@@ -176,14 +176,14 @@ function filterBy(event, arr) {
     }
     
     filterHelper(event.target.value)
-    if (arr === wizardArray) {
-        document.querySelector("#wizard-pics-here").innerHTML = "";
-        filteredArr.map(wizard=>renderWizard(wizard))
-    }
-    if (arr === friendArray) {
+    
+    document.querySelector("#wizard-pics-here").innerHTML = "";
+    filteredArr.map(wizard=>renderWizard(wizard))
+    
+    /*if (arr === friendArray) {
         document.querySelector("#my-friends-here").innerHTML = "";
         filteredArr.map(wizard=> renderFriend(wizard))
-    }
+    }*/
    
     document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, filteredArr, renderWizard));
     //document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, filteredArr, renderFriend))
