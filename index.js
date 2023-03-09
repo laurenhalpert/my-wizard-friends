@@ -108,7 +108,7 @@ function updateRatingComment(event, wizard) {
         }
     }
     
-    if (document.querySelector("#rating").innerText.substring(8) === "undefined" && document.querySelector("#comments").innerText.substring(10) === "undefined"){
+    if (document.querySelector("#rating").innerText.substring(8) === "undefined" && document.querySelector("#comments").innerText.substring(9) === "undefined"){
         getRadioRatings();
         likeObj.rating =ratingValue;
         
@@ -198,13 +198,13 @@ function renderWizard(wizard) {
     document.querySelector("#wizard-pics-here").appendChild(wizardPicture);
 }
 
-function renderFriend(wizard) {
+/*function renderFriend(wizard) {
     const myFriendPic = document.createElement("img");
     myFriendPic.className = "wizard-thumbnail";
     myFriendPic.src= wizard.image;
     myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
-}
+}*/
 
 function hasPatronus(wizard) {
     if(wizard.patronus !== "") {
