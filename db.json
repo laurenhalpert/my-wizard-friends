@@ -5,18 +5,6 @@
       "forName": "Harry Potter",
       "rating": "☆ ☆ ☆ ☆",
       "comment": "the chosen one"
-    },
-    {
-      "id": "ca3827f0-375a-4891-aaa5-f5e8a5bad225",
-      "forName": "Minerva McGonagall",
-      "rating": "☆ ☆ ☆ ☆ ☆",
-      "comment": "she's the coolest"
-    },
-    {
-      "id": "4c7e6819-a91a-45b2-a454-f931e4a7cce3",
-      "forName": "Hermione Granger",
-      "rating": "☆ ☆ ☆ ☆ ☆",
-      "comment": "super smart"
     }
   ]
 }
