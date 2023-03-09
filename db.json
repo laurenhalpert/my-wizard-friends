@@ -3,8 +3,14 @@
     {
       "id": "9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8",
       "forName": "Harry Potter",
-      "rating": "☆ ☆ ☆ ☆",
+      "rating": "☆ ☆ ☆ ☆ ☆",
       "comment": "the chosen one"
+    },
+    {
+      "id": "4c7e6819-a91a-45b2-a454-f931e4a7cce3",
+      "forName": "Hermione Granger",
+      "rating": "☆ ☆ ☆ ☆",
+      "comment": "smart"
     }
   ]
 }

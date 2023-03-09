@@ -24,9 +24,9 @@ document.querySelector("#create-wizard").addEventListener("submit", handleSubmit
 
 //document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, friendArray, renderFriend));
 
-document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, wizardArray, renderWizard));
+document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, wizardArray));
 
-document.querySelector("#filter").addEventListener("change", event =>filterBy(event, wizardArray))
+document.querySelector("#filter").addEventListener("change", event =>filterBy(event))
 
 //document.querySelector("#filter-friends").addEventListener("change", event => filterBy(event, friendArray) )
 
@@ -124,9 +124,9 @@ function updateRatingComment(event, wizard) {
     event.target.reset();
 }
 
-function sortWizards(event) {
+function sortWizards(event, arr) {
     let nameArray = [];
-    wizardArray.forEach(wizard => nameArray.push(wizard.name));
+    arr.forEach(wizard => nameArray.push(wizard.name));
     let arrOfSortedNames = nameArray.sort();
     
     let arrOfSortedWizards =[];
@@ -138,7 +138,7 @@ function sortWizards(event) {
             sortedArr = reverseAlphabetical
         }
         sortedArr.forEach(name => {
-            wizardArray.forEach(wizard => {
+            arr.forEach(wizard => {
                 if (wizard.name === name) {
                     arrOfSortedWizards.push(wizard);
                 }
@@ -185,7 +185,7 @@ function filterBy(event) {
         filteredArr.map(wizard=> renderFriend(wizard))
     }*/
    
-    document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, filteredArr, renderWizard));
+    document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, filteredArr));
     //document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, filteredArr, renderFriend))
 }
 
