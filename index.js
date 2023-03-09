@@ -1,21 +1,22 @@
 //Variables
 let wizardArray = [];
-//let friendArray = [];
 let ratingValue;
 const randomPatronus = ["lion", "wolf", "eagle", "duck", "bear", "turtle", "kangaroo", "penguin", "dolphin", "shark"];
+
+
+
 
 //Event Listeners
 document.addEventListener("DOMContentLoaded", () => getWizards())
 
 document.querySelector("#create-wizard").addEventListener("submit", handleSubmit);
 
-//document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, friendArray, renderFriend));
-
 document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, wizardArray));
 
 document.querySelector("#filter").addEventListener("change", event =>filterBy(event))
 
-//document.querySelector("#filter-friends").addEventListener("change", event => filterBy(event, friendArray) )
+
+
 
 //Event Call Back Functions
 function handleSubmit(event) {
@@ -38,6 +39,7 @@ function handleSubmit(event) {
         let random = Math.floor(Math.random()*10)
         wizardObj.patronus = randomPatronus[random];
     }
+    //if patronus given
     else {
         wizardObj.patronus = event.target[3].value;
     }
@@ -70,6 +72,7 @@ function addFriend(wizard) {
     myFriendPic.id = `${wizard.id}`
     myFriendPic.className = "wizard-thumbnail";
     myFriendPic.src= wizard.image;
+
     myFriendPic.addEventListener("click", () => {
         showWizardProfile(wizard);
         document.querySelector("#del-btn").style.visibility="visible";
@@ -77,7 +80,6 @@ function addFriend(wizard) {
     
     document.querySelector("#my-friends-here").appendChild(myFriendPic);
   
-    //friendArray.push(wizard);
     document.querySelector("#del-btn").style.visibility="visible";
 }
 
@@ -142,9 +144,6 @@ function sortWizards(event, arr) {
         
         document.querySelector("#wizard-pics-here").innerHTML = "";
         
-        /*if (foo === renderFriend) {
-            document.querySelector("#my-friends-here").innerHTML = "";
-        }*/
         arrOfSortedWizards.forEach(wizard => renderWizard(wizard));
     }
     sortHelper(event.target.value)
@@ -174,15 +173,13 @@ function filterBy(event) {
     
     document.querySelector("#wizard-pics-here").innerHTML = "";
     filteredArr.map(wizard=>renderWizard(wizard))
-    
-    /*if (arr === friendArray) {
-        document.querySelector("#my-friends-here").innerHTML = "";
-        filteredArr.map(wizard=> renderFriend(wizard))
-    }*/
    
     document.querySelector("#sorter").addEventListener("change", event=> sortWizards(event, filteredArr));
-    //document.querySelector("#sorter-friends").addEventListener("change", event => sortWizards(event, filteredArr, renderFriend))
+    
 }
+
+
+
 
 //Helper Functions
 function renderWizard(wizard) {
@@ -192,14 +189,6 @@ function renderWizard(wizard) {
     wizardPicture.addEventListener("click", () => showWizardProfile(wizard));
     document.querySelector("#wizard-pics-here").appendChild(wizardPicture);
 }
-
-/*function renderFriend(wizard) {
-    const myFriendPic = document.createElement("img");
-    myFriendPic.className = "wizard-thumbnail";
-    myFriendPic.src= wizard.image;
-    myFriendPic.addEventListener("click", () => showWizardProfile(wizard));
-    document.querySelector("#my-friends-here").appendChild(myFriendPic);
-}*/
 
 function hasPatronus(wizard) {
     if(wizard.patronus !== "") {
