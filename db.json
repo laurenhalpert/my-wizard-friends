@@ -5,24 +5,6 @@
       "forName": "Harry Potter",
       "rating": "☆ ☆ ☆ ☆ ☆",
       "comment": "the chosen one"
-    },
-    {
-      "id": "4c7e6819-a91a-45b2-a454-f931e4a7cce3",
-      "forName": "Hermione Granger",
-      "rating": "☆ ☆ ☆ ☆",
-      "comment": "smart"
-    },
-    {
-      "forName": "Gary Potter",
-      "rating": "☆ ☆ ☆ ☆ ☆",
-      "comment": "twin",
-      "id": "geKve8g"
-    },
-    {
-      "id": "c3b1f9a5-b87b-48bf-b00d-95b093ea6390",
-      "forName": "Ron Weasley",
-      "rating": "☆ ☆ ☆ ☆ ☆",
-      "comment": "good friend"
     }
   ]
 }
