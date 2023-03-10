@@ -51,15 +51,8 @@ function handleSubmit(event) {
     
     wizardObj.image= event.target[4].value;
     wizardArray.push(wizardObj);
-
-    renderWizard(wizardObj);
-    fetch("https://hp-api.onrender.com/api/characters")
-    .then(resp => resp.json())
-    .then(wizards => {
-        for (let i = 0; i < 10; i ++) {
-            renderWizard(wizards[i])
-        }
-    })
+    wizardArray.forEach(wizard => renderWizard(wizard))
+   
 
     event.target.reset();
 }
