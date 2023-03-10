@@ -20,9 +20,15 @@ This web application is a way for users to assemble their own group of friends f
 -Sort filtered wizards alphabetically or reverse alphabetically
 
 
+## GitHub URL
+
+https://github.com/laurenhalpert/phase-1-project-1
+
+
 ## Acknowledgments
 
 Used API: https://hp-api.onrender.com/api/characters
+
 
 ## Contributing
 
