@@ -2,7 +2,7 @@
 let wizardArray = [];
 let ratingValue;
 const randomPatronus = ["lion", "wolf", "eagle", "duck", "bear", "turtle", "kangaroo", "penguin", "dolphin", "shark"];
-
+let count = 0;
 
 
 
@@ -44,6 +44,8 @@ function handleSubmit(event) {
         wizardObj.patronus = event.target[3].value;
     }
     
+    wizardObj.id = count.toString();
+    count ++;
     wizardObj.name = event.target[0].value;
     wizardObj.gender = event.target[1].value;
     
@@ -84,7 +86,10 @@ function addFriend(wizard) {
 }
 
 function removeFriend(event, wizard) {
+    
+    console.log(document.querySelectorAll(".wizard-thumbnail"))
     document.querySelectorAll(".wizard-thumbnail").forEach(elem => {
+        
         if (elem.id === wizard.id) {
             elem.remove();
         }
